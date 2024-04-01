@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <script src="./assets/scripts/jquery-3.7.1.min.js"></script>
+    <script src="./assets/scripts/slick.min.js"></script>
+    <title>Cake Cupcake</title>
+</head>
+
+<body>
+    <nav class="top_nav_panel">
+        <div class="top_nav_panel__item logo"><img src="./assets/images/logos/logo.png" alt="Cake Cupcake"></div>
+        <div class="top_nav_panel__item work_time">Работаем с 8:00 до 21:00</div>
+        <a href="tel:+79000000000" class="top_nav_panel__item phone_number">+7 (900) 000 00-00</a>
+    </nav>
+    <nav class="topbar">
+        <ul class="topbar__menu">
+            <li class="topbar__menu__li">
+                <a href="#" class="topbar__menu__link">Заказать торт</a>
+            </li>
+            <li class="topbar__menu__li">
+                <a href="#fillings" class="topbar__menu__link">Начинки</a>
+            </li>
+            <li class="topbar__menu__li">
+                <a href="#photo_gallery" class="topbar__menu__link">Фотогалерея</a>
+            </li>
+            <li class="topbar__menu__li">
+                <a href="#reviews" class="topbar__menu__link">Отзывы</a>
+            </li>
+            <li class="topbar__menu__li">
+                <a href="#delivery" class="topbar__menu__link">Доставка</a>
+            </li>
+            <li class="topbar__menu__li">
+                <a href="#contacts" class="topbar__menu__link">Контакты</a>
+            </li>
+        </ul>
+        <div class="topbar__auth">
+            <button class="topbar__auth__button" id="butLogin">Войти</button>
+            <span class="topbar__auth__seporator">|</span>
+            <button class="topbar__auth__button" id="butLogup">Регистрация</button>
+        </div>
+    </nav>
+    <main class="main">
+        <header class="header">
+            <div class="header__block">
+                <h1 class="header__block__heading">Готовим Бето-торты на заказ</h1>
+                <h4 class="header__block__subtitle">Нижний новгород</h4>
+            </div>
+            <button class="header__button">Оформить заказ</button>
+        </header>
+        <section class="catalog" id="catalog">
+            <h1 class="catalog__heading heading">Бенто-торты</h1>
+            <main class="catalog__body">
+                <nav class="catalog__nav">
+                    <ul class="catalog__nav__ul">
+                        <li class="catalog__nav__li catalog__nav__li_heading">
+                            <h3>Каталог товаров</h3>
+                        </li>
+                    </ul>
+                </nav>
+                <section class="catalog__list">
+                    <!-- <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/1.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт на Новый Год</h4>
+                        <div class="catalog__list__card__price">1300₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article> -->
+                    <!-- <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/2.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт на Новый Год</h4>
+                        <div class="catalog__list__card__price">1250₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article>
+                    <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/3.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт на Новый Год</h4>
+                        <div class="catalog__list__card__price">1400₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article>
+                    <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/4.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт на Новый Год</h4>
+                        <div class="catalog__list__card__price">1450₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article>
+                    <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/5.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт на Новый Год</h4>
+                        <div class="catalog__list__card__price">1400₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article>
+                    <article class="catalog__list__card">
+                        <img src="./assets/images/catalog/6.png" alt="" class="catalog__list__card__image">
+                        <h4 class="catalog__list__card__heading">Бенто-торт с вашим дизайном</h4>
+                        <div class="catalog__list__card__price">от 1000₽</div>
+                        <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+                    </article> -->
+                </section>
+            </main>
+        </section>
+        <section class="photo_gallery" id="photo_gallery">
+            <h1 class="photo_gallery__heading heading">Фотогалерея</h1>
+            <main class="photo_gallery__body">
+                <article class="photo_gallery__item">
+                    <div class="photo_gallery__item__row photo_gallery__item__three_image">
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento1.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento2.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento3.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                    <div class="photo_gallery__item__row photo_gallery__item__four_image">
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento4.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento5.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento6.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento7.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                    <div class="photo_gallery__item__row photo_gallery__item__three_image">
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento8.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento9.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento10.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="photo_gallery__item">
+                    <div class="photo_gallery__item__row photo_gallery__item__three_image">
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento1.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento2.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento3.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                    <div class="photo_gallery__item__row photo_gallery__item__four_image">
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento4.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento5.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento6.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__four_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento7.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                    <div class="photo_gallery__item__row photo_gallery__item__three_image">
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento8.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento9.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                        <div class="photo_gallery__item__three_image__block photo_gallery__item__block">
+                            <img src="./assets/images/sliders/photo_gallery/bento10.png" alt=""
+                                class="photo_gallery__item__block__image">
+                            <div class="photo_gallery__item__block__description">Цена:<br />1300₽</div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+        <section class="fillings" id="fillings">
+            <h1 class="fillings__heading heading">Начинки</h1>
+            <main class="fillings__body">
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/shokoladVi.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Шоколадная вишня </h4>
+                        <p class="fillings__body__item__description__text">Шоколадный бисквит, крем-чиз с
+                            добавлением молочного шоколада и прослой из вишневого конфи</p>
+                    </div>
+                </article>
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/funduch.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Фундучная груша</h4>
+                        <p class="fillings__body__item__description__text">Шифоновые бисквиты с добавлением большого
+                            количества дробленного фундука, в сочетании крем-чиза и грушевого мусса</p>
+                    </div>
+                </article>
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/malinachiz.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Малиновый чизкейк</h4>
+                        <p class="fillings__body__item__description__text">Ванильные бисквиты пропитанные молочной
+                            пропиткой, прослойка из чизкейка с добавлением свежей малины</p>
+                    </div>
+                </article>
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/shokVan.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Шоколадно-ванильная клубника</h4>
+                        <p class="fillings__body__item__description__text">Шоколадные и ванильные бисквиты
+                            пропитанные малиновым сиропом, прослойка из шоколадно-сливочного крема и крем-чиза с
+                            добавлением клубники</p>
+                    </div>
+                </article>
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/fruktMix.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Фруктовый микс</h4>
+                        <p class="fillings__body__item__description__text">Ванильные бисквиты пропитанные клубничным
+                            сиропом, прослойкой из сливочно-бананового крема и прослойкой из клубничного конфи</p>
+                    </div>
+                </article>
+                <article class="fillings__body__item">
+                    <img src="./assets/images/fillings/redbarhat.png" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">Красный бархат</h4>
+                        <p class="fillings__body__item__description__text">Невероятно влажные бисквиты в сочетании с
+                            сырным кремом</p>
+                    </div>
+                </article>
+            </main>
+        </section>
+        <section class="contacts" id="contacts">
+            <section class="contacts__body">
+                <h1 class="contacts__body__heading">Контакты</h1>
+                <ul class="contacts__body__list">
+                    <li class="contacts__body__list__item">Адрес: Нижний Новгород,
+                        ул. Витебская, д.64</li>
+                    <li class="contacts__body__list__item">Тел: +7 (900) 000 00-00</li>
+                </ul>
+            </section>
+            <!-- <section class="contacts__map">
+                <div class="contacts__map__conteiner" style="position:relative;overflow:hidden;"><a
+                        href="https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps"
+                        style="color:#eee;font-size:12px;position:absolute;top:0px;">Нижний Новгород</a><a
+                        href="https://yandex.ru/maps/47/nizhny-novgorod/house/vitebskaya_ulitsa_64/YEoYfwRpS0YEQFtsfX9xeXxnYg==/?ll=43.939232%2C56.308046&utm_medium=mapframe&utm_source=maps&z=17.12"
+                        style="color:#eee;font-size:12px;position:absolute;top:14px;">Витебская улица, 64 —
+                        Яндекс Карты</a><iframe
+                        src="https://yandex.ru/map-widget/v1/?ll=43.939232%2C56.308046&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Njk3NzE5MhJO0KDQvtGB0YHQuNGPLCDQndC40LbQvdC40Lkg0J3QvtCy0LPQvtGA0L7QtCwg0JLQuNGC0LXQsdGB0LrQsNGPINGD0LvQuNGG0LAsIDY0IgoNxsEvQhVxO2FC&z=17.12"
+                        frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+            </section> -->
+        </section>
+        <section class="delivery" id="delivery">
+            <h1 class="delivery__heading heading">Доставка</h1>
+            <section class="delivery__way">
+                <h2 class="delivery__way__heading">Самовывоз</h2>
+                <p class="delivery__way__description">Бенто-торт будет ждать вас по адресу: г. Нижний Новгород, ул.
+                    Витебская, д. 64 с 8:00 и до 21:00</p>
+            </section>
+            <section class="delivery__way">
+                <h2 class="delivery__way__heading">Доставка курьером</h2>
+                <p class="delivery__way__description">Наш водитель доставит бенто-торт в целости и сохранности. При
+                    заказе от 2-х бенто-тортов доставка в пределах Канавинского района бесплатно!</p>
+                <p class="delivery__way__description">Стоимость доставки по Нижнему Новгороду и пределами города
+                    рассчитывается отдельно.Срочные заказы день в день принимаются до 14:00 и доставляются с 18:00 до
+                    21:00</p>
+                <p class="delivery__way__description">Курьер свяжется с вами за 30 минут до прибытия.</p>
+            </section>
+        </section>
+        <section class="reviews" id="reviews">
+            <h1 class="reviews__heading heading">Отзывы</h1>
+            <h3 class="reviews__subtitle">У нас более <span>1000 отзывов</span> Вконтакте. Вот некоторые из них:</h3>
+            <main class="reviews__body">
+                <article class="reviews__body__item">
+                    <img src="./assets/images/reviews/heart2.png" alt="" class="reviews__body__item__image">
+                    <p class="reviews__body__item__text">Бенто-торт полностью оправдал все ожидания, вкус невероятно
+                        нежный. Спасибо вам большое!</p>
+                    <div class="reviews__body__item__headings">
+                        <h4 class="reviews__body__item__name">Мария Иванова</h4>
+                        <h6 class="reviews__body__item__city">Нижний Новгород</h6>
+                    </div>
+                </article>
+                <article class="reviews__body__item">
+                    <img src="./assets/images/reviews/heart2.png" alt="" class="reviews__body__item__image">
+                    <p class="reviews__body__item__text">Бенто-торт полностью оправдал все ожидания, вкус невероятно
+                        нежный. Спасибо вам большое!</p>
+                    <div class="reviews__body__item__headings">
+                        <h4 class="reviews__body__item__name">Мария Иванова</h4>
+                        <h6 class="reviews__body__item__city">Нижний Новгород</h6>
+                    </div>
+                </article>
+            </main>
+        </section>
+    </main>
+    <footer class="footer">
+        <nav class="footer__nav">
+            <ul class="footer__nav__ul">
+                <li class="footer__nav__ul__li">
+                    <a href="#catalog" class="footer__nav__ul__li__link">Ассортимент</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#fillings" class="footer__nav__ul__li__link">Начинки</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#photo_gallery" class="footer__nav__ul__li__link">Фотогалерея</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#reviews" class="footer__nav__ul__li__link">Отзывы</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#delivery" class="footer__nav__ul__li__link">Доставка</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#contacts" class="footer__nav__ul__li__link">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="footer__description">
+            <img src="./assets/images/logos/footer_logo.png" alt="" class="footer__description__logo">
+            <p class="footer__description__text">Только натуральные, качественные и свежие ингредиенты, тщательно
+                подобранные вкусовые сочетания,которые никого не оставят равнодушным.</p>
+        </section>
+        <section class="footer__contacts">
+            <article class="footer__contacts__item">
+                <h5 class="footer__contacts__item__heading">WhatsApp, Telegram
+                </h5>
+                <a class="footer__contacts__item__text">+7 (900) 000-00-00</a>
+            </article>
+            <article class="footer__contacts__item">
+                <section class="footer__contacts__item__work_schedule">
+                    <h5 class="footer__contacts__item__heading">График работы:
+                    </h5>
+                    <p class="footer__contacts__item__text">с 8:00 до 21:00</p>
+                </section>
+            </article>
+            <section class="footer__contacts__item__soc">
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/vk.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/instagramm.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/whatsapp.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+            </section>
+        </section>
+    </footer>
+    <main class="modal_window" id="login">
+        <form action="" class="modal_window__form">
+            <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
+            <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
+            <h3 class="modal_window__form__heading">Вход в личный кабинет</h3>
+            <input type="text" placeholder="Логин" class="modal_window__form__input">
+            <input type="password" placeholder="Пароль" class="modal_window__form__input">
+            <div class="modal_window__form__link_block">
+                Нет аккаунта?
+                <a href="" class="modal_window__form__link_block__link" data-form="reg">Зарегестрируйтесь</a>
+            </div>
+            <div class="modal_window__form__error"></div>
+            <button class="modal_window__form__submit">ВОЙТИ</button>
+        </form>
+    </main>
+    <main class="modal_window" id="logup">
+        <form action="" class="modal_window__form">
+            <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
+            <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
+            <h3 class="modal_window__form__heading">Регистрация</h3>
+            <input type="text" placeholder="Введите имя" class="modal_window__form__input">
+            <input type="tel" placeholder="Введите номер телефона" class="modal_window__form__input">
+            <input type="password" placeholder="Введите пароль" class="modal_window__form__input">
+            <input type="password" placeholder="Введите повторно пароль" class="modal_window__form__input">
+            <div class="modal_window__form__link_block">
+                Есть аккаунт?
+                <a href="" class="modal_window__form__link_block__link" data-form="login">Войдите</a>
+            </div>
+            <div class="modal_window__form__error"></div>
+            <button class="modal_window__form__submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        </form>
+    </main>
+    <script src="./assets/scripts/main.js"></script>
+</body>
+
+</html>
