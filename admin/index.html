@@ -63,7 +63,7 @@
                             required>
                         <label for="producrt_price" class="admin-form__label-input">Введите цену</label>
                     </div>
-                    <label for="image" class="admin-form__label-file">
+                    <label for="image" class="admin-form__label-file" enctype="multipart/form-data">
                         <input class="admin-form__input-file" type="file" name="image" id="image" accept="image/*">
                     </label>
                     <button class="admin-form__button-submit" type="submit" name="products"
@@ -85,7 +85,7 @@
         <section class="section" id="fillings">
             <h1 class="section__heading">Начинки</h1>
             <main class="section__body">
-                <form class="section__form admin-form">
+                <form class="section__form admin-form" enctype="multipart/form-data">
                     <h2 class="admin-form__heading">Добавить</h2>
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
@@ -121,7 +121,7 @@
                         <input type="number" name="price" id="gallery_price" class="admin-form__input" min="1" required>
                         <label for="gallery_price" class="admin-form__label-input">Введите цену</label>
                     </div>
-                    <label for="images" class="admin-form__label-file">
+                    <label for="images" class="admin-form__label-file" enctype="multipart/form-data">
                         <input class="admin-form__input-file" type="file" name="images" id="images" accept="image/*"
                             multiple>
                     </label>

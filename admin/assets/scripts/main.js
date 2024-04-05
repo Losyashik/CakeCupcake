@@ -3,7 +3,6 @@ window.onload = () => {
     window.location.hash = "#category";
   }
   document.querySelectorAll(".leftbar__link").forEach((item) => {
-    console.log(item);
     if (item.href == window.location) {
       item.classList.add("active");
     }
@@ -18,30 +17,48 @@ document.querySelectorAll(".leftbar__link").forEach((item) => {
   });
 });
 
-["dragover", "drop"].forEach(function(event) {
-  document.addEventListener(event, function(evt) {
-    evt.preventDefault()
-  })
-})
+["dragover", "drop"].forEach(function (event) {
+  document.addEventListener(event, function (evt) {
+    evt.preventDefault();
+  });
+});
 
+document.querySelectorAll(".admin-form__label-file").forEach((item) => {
+  document.addEventListener("dragstart", (e) => {
+    item.classList.add("drag");
+  });
+  document.addEventListener("dragenter", (e) => {
+    item.classList.add("drag");
+  });
+  document.addEventListener("dragend", (e) => {
+    item.classList.remove("drag");
+  });
+  document.addEventListener("drop", (e) => {
+    item.classList.remove("drag");
+  });
+  item.addEventListener("drop", (e) => {
+    item.classList.remove("drag");
+    let inp = item.children[0];
+    let inpFileList = inp.files;
+    let newFileList = new DataTransfer();
+    let addedFiles = e.dataTransfer.files;
 
+    for (var i = 0; i < inpFileList.length; i++) {
+      newFileList.items.add(inpFileList[i]);
+    }
 
+    [...addedFiles].forEach((file) => {
+      newFileList.items.add(file);
+    });
+    inp.files = newFileList.files;
+  });
+});
 
-document.querySelectorAll(".admin-form__label-file").forEach(item => {
-  document.addEventListener("dragstart", e => {
-    item.classList.add("drag")
-  })
-  document.addEventListener("dragenter", e => {
-    item.classList.add("drag")
-  })
-  document.addEventListener("dragend", e => {
-    item.classList.remove("drag")
-  })
-  document.addEventListener("drop", e => {
-    item.classList.remove("drag")
-  })
-  item.addEventListener("drop", e => {
-    item.classList.remove("drag")
-    console.log("drop");
-  })
-})
+document.querySelectorAll(".admin-form__button-submit").forEach((form) => {
+  form.addEventListener("submit", (e) => {
+    fetch("", {
+      method: "post",
+      body: new FormData(e.currentTarget),
+    });
+  });
+});
