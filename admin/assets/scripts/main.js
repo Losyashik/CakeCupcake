@@ -39,5 +39,12 @@ document.querySelectorAll(".admin-form__label-content").forEach(item => {
   });
   item.addEventListener("drop", e => {
     console.log("drop");
+    let inp = e.currentTarget().parent;
+    let inpFileList = inp.files;
+    let newFileList = new DataTransfer();
+    for (var i = 0; i < inpFileList.length; i++) {
+      if (i != index) newFileList.items.add(inpFileList[i]);
+    }
+    inp.files = newFileList.files;
   })
 })
