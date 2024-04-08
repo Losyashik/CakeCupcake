@@ -22,6 +22,25 @@ html {
         padding: 0 0.5vw 0 0;
     }
 }
+@keyframes labelIn {
+    0% {
+        left: 8px;
+        top: -1em;
+        font-size: 10pt;
+        background: #fff;
+        width: auto;
+        padding: 0 0.5vw 0 0;
+    }
+    5% {
+        background: #fff;
+    }
+    100% {
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-size: 12pt;
+    }
+}
 body {
     margin: 0;
     overflow: hidden;
@@ -70,6 +89,8 @@ body {
         z-index: 20;
         user-select: none;
         cursor: text;
+        transition: all 0.3s;
+        animation: labelIn 0.3s;
     }
 
     &__input {
@@ -83,19 +104,12 @@ body {
         font-size: 12pt;
         box-sizing: border-box;
         padding: 1.5vh 1vw;
-        animation: labelOut .3s;
-        animation-fill-mode:both;
+        animation: labelOut 0.3s;
+        // animation-fill-mode:both;
         &:focus ~ label,
         &:valid ~ label {
-            animation: labelOut .3s;
-            animation-fill-mode:both;
-            
-            // left: 8px;
-            // top: -1em;
-            // font-size: 10pt;
-            // background: #fff;
-            // width: auto;
-            // padding: 0 0.5vw 0 0;
+            animation: labelOut 0.3s;
+            animation-fill-mode: both;
         }
     }
 
@@ -114,6 +128,13 @@ body {
         align-content: center;
         border: 2px solid var(--dark-color);
         border-radius: 8px;
+    }
+    &__label-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &::before {
             content: "Добавьте изображение";
             display: block;

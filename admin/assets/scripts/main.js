@@ -3,7 +3,6 @@ window.onload = () => {
     window.location.hash = "#category";
   }
   document.querySelectorAll(".leftbar__link").forEach((item) => {
-    console.log(item);
     if (item.href == window.location) {
       item.classList.add("active");
     }
@@ -18,8 +17,8 @@ document.querySelectorAll(".leftbar__link").forEach((item) => {
   });
 });
 
-["dragover", "drop"].forEach(function(event) {
-  document.addEventListener(event, function(evt) {
+["dragover", "drop"].forEach(function (event) {
+  document.addEventListener(event, function (evt) {
     evt.preventDefault()
   })
 })
@@ -27,21 +26,18 @@ document.querySelectorAll(".leftbar__link").forEach((item) => {
 
 
 
-document.querySelectorAll(".admin-form__label-file").forEach(item => {
-  document.addEventListener("dragstart", e => {
-    item.classList.add("drag")
-  })
-  document.addEventListener("dragenter", e => {
-    item.classList.add("drag")
-  })
-  document.addEventListener("dragend", e => {
-    item.classList.remove("drag")
-  })
-  document.addEventListener("drop", e => {
-    item.classList.remove("drag")
-  })
+document.querySelectorAll(".admin-form__label-content").forEach(item => {
+  ["dragstart", "dragenter"].forEach((e) => {
+    document.addEventListener(e, () => {
+      item.classList.add("drag")
+    })
+  });
+  ["dragleave", "dragend", "drop"].forEach((e) => {
+    document.addEventListener(e, () => {
+      item.classList.remove("drag");
+    })
+  });
   item.addEventListener("drop", e => {
-    item.classList.remove("drag")
     console.log("drop");
   })
 })
