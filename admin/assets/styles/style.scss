@@ -118,30 +118,53 @@ body {
     }
 
     &__label-file {
+        overflow-y: auto;
         display: flex;
         width: 80%;
         margin: 2vh auto;
         background: var(--light-color);
-        min-height: 10vh;
         justify-content: center;
         align-items: center;
         align-content: center;
         border: 2px solid var(--dark-color);
         border-radius: 8px;
+        padding: 1vh 1vw;
+        box-sizing: border-box;
     }
     &__label-content {
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: 90px;
         display: flex;
         justify-content: center;
         align-items: center;
-        &::before {
+        pointer-events: none;
+        &:not(:has(img))::before {
             content: "Добавьте изображение";
             display: block;
         }
         &.drag::before {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(100% + 1vh);
+            top: 0;
+            left: 0;
+            background: var(--light-color);
             content: "Перетащите сюда";
-            display: block;
+        }
+        &:has(img) {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            img {
+                width: 90px;
+                margin-bottom: 0.5vh;
+                object-fit: contain;
+                height: 90px;
+                pointer-events: none;
+            }
         }
     }
 
@@ -222,11 +245,12 @@ body {
     }
 
     &__form {
-        width: 30%;
+        width: 450px;
     }
 
     &__list {
-        width: 60%;
+        margin: 0 2vw;
+        flex-grow: 1;
     }
 }
 .bg {
