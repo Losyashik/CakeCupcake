@@ -7,22 +7,39 @@ window.onload = () => {
       item.classList.add("active");
     }
   });
+  getfillings();
 };
 
-document.querySelectorAll(".leftbar__link").forEach((item) => {
-  item.addEventListener("click", () => {
-    if (item.classList.contains("active")) return false;
-    document.querySelector(".leftbar__link.active").classList.remove("active");
-    item.classList.add("active");
+async function getfillings() {
+  let body = new FormData();
+  body.append("filling", "get");
+  data = await fetch('./assets/api/index.php', {
+    method: 'post',
+    body
+  }).then(text => text.json()).then(json => { return json });
+  let table = document.querySelector("#fillings-table");
+  table.innerHTML = `<tr class="table__row">
+                                <th class="table__heading-ceil" > id</th >
+                                <th class="table__heading-ceil">Изображение</th>
+                                <th class="table__heading-ceil">Название</th>
+                                <th class="table__heading-ceil">Описание</th>
+                                <th class="table__heading-ceil">Удалить</th>
+                            </tr > `;
+  data.forEach((item) => {
+
+    table.insertAdjacentHTML("beforeEnd",
+      `
+        <tr class="table__row">
+          <td class="table__ceil">${item.id}</td>
+          <td class="table__ceil"><img src="./.${item.image}"/></td>
+          <td class="table__ceil">${item.name}</td>
+          <td class="table__ceil">${item.description}</td>
+          <td class="table__ceil">${item.id}</td>
+        </tr>
+      `
+    )
   });
-});
-
-["dragover", "drop"].forEach(function (event) {
-  document.addEventListener(event, function (evt) {
-    evt.preventDefault()
-  })
-})
-
+}
 function addImage(block, input) {
   block.innerHTML = '';
   let images = input.files;
@@ -38,10 +55,22 @@ function addImage(block, input) {
   });
 }
 
+document.querySelectorAll(".leftbar__link").forEach((item) => {
+  item.addEventListener("click", () => {
+    if (item.classList.contains("active")) return false;
+    document.querySelector(".leftbar__link.active").classList.remove("active");
+    item.classList.add("active");
+  });
+});
+
+["dragover", "drop"].forEach(function (event) {
+  document.addEventListener(event, function (evt) {
+    evt.preventDefault()
+  })
+})
 document.querySelectorAll(".admin-form__input-file").forEach((item) => {
   item.addEventListener('change', () => {
-    block = item.parentElement.firstElementChild;
-    console.log(block);
+    let block = item.parentElement.firstElementChild;
     addImage(block, item);
   })
 })
@@ -70,7 +99,7 @@ document.querySelectorAll(".admin-form__label-file").forEach(item => {
     let inpFileList = inp.files;
     let addedFiles = e.dataTransfer.files;
     let newFileList = new DataTransfer();
-    for (var i = 0; i < inpFileList.length; i++) {
+    for (let i = 0; i < inpFileList.length; i++) {
       newFileList.items.add(inpFileList[i]);
     }
     [...addedFiles].forEach((file) => {
@@ -85,10 +114,45 @@ document.querySelectorAll(".admin-form").forEach(item => {
     e.preventDefault();
     let but = item.lastElementChild;
     let body = new FormData(item);
-    data = await fetch(`./assets/backend/api/${but.name}/${but.value}/`, {
+    body.append(but.name, but.value)
+    data = await fetch('./assets/api/index.php', {
       method: 'post',
       body
     }).then(text => text.json()).then(json => { return json })
-    console.log(data);
+    switch (but.name) {
+      case "filling": {
+        let table = document.querySelector("#fillings-table");
+        table.innerHTML = `<tr class="table__row">
+                                <th class="table__heading-ceil" > id</th >
+                                <th class="table__heading-ceil">Изображение</th>
+                                <th class="table__heading-ceil">Название</th>
+                                <th class="table__heading-ceil">Описание</th>
+                                <th class="table__heading-ceil">Удалить</th>
+                            </tr > `;
+        data.forEach((item) => {
+
+          table.insertAdjacentHTML("beforeEnd",
+            `
+              <tr class="table__row">
+                <td class="table__ceil">${item.id}</td>
+                <td class="table__ceil"><img src="./../${item.image}"/></td>
+                <td class="table__ceil">${item.name}</td>
+                <td class="table__ceil">${item.description}</td>
+                <td class="table__ceil">${item.id}</td>
+              </tr>
+            `
+          )
+        })
+        break;
+      }
+      case "products": {
+        break;
+      }
+      case "category": {
+        break;
+      }
+    }
+    item.querySelector(".admin-form__label-content").innerHTML="";
+    item.reset()
   })
 })

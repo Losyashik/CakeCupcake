@@ -52,7 +52,8 @@ body {
 .admin-form {
     border: 3px solid var(--dark-color);
     border-radius: 10px;
-
+    position: sticky;
+    top: 10px;
     &__heading {
         text-align: center;
         margin: 2vh 0;
@@ -90,7 +91,11 @@ body {
         user-select: none;
         cursor: text;
         transition: all 0.3s;
+        pointer-events: none;
         animation: labelIn 0.3s;
+        &::before {
+            content: "Введите ";
+        }
     }
 
     &__input {
@@ -105,6 +110,7 @@ body {
         box-sizing: border-box;
         padding: 1.5vh 1vw;
         animation: labelOut 0.3s;
+        resize: vertical;
         // animation-fill-mode:both;
         &:focus ~ label,
         &:valid ~ label {
@@ -116,7 +122,6 @@ body {
     &__input-file {
         display: none;
     }
-
     &__label-file {
         overflow-y: auto;
         display: flex;
@@ -234,7 +239,9 @@ body {
     box-sizing: border-box;
     height: 100vh;
     overflow: auto;
-
+    &__with-table {
+        max-height: 90vh;
+    }
     &__heading {
         text-align: center;
     }
@@ -242,6 +249,7 @@ body {
     &__body {
         display: flex;
         justify-content: space-between;
+        align-items: start;
     }
 
     &__form {
@@ -249,8 +257,9 @@ body {
     }
 
     &__list {
-        margin: 0 2vw;
-        flex-grow: 1;
+        padding: 0 2vw;
+        width: calc(100% - 450px);
+        box-sizing: border-box;
     }
 }
 .bg {
@@ -264,5 +273,26 @@ body {
     z-index: 15;
     &.active {
         display: block;
+    }
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    &__row {
+        &:first-child {
+            width: 4ch;
+        }
+    }
+    &__heading-ceil {
+        font-weight: 700;
+        border: 2px solid #000;
+    }
+    &__ceil {
+        border: 1px solid #000;
+        img {
+            max-width: 200px;
+            object-fit: contain;
+            display: block;
+        }
     }
 }

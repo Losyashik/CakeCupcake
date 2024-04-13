@@ -54,6 +54,8 @@ body {
 .admin-form {
   border: 3px solid var(--dark-color);
   border-radius: 10px;
+  position: sticky;
+  top: 10px;
 }
 .admin-form__heading {
   text-align: center;
@@ -93,7 +95,11 @@ body {
           user-select: none;
   cursor: text;
   transition: all 0.3s;
+  pointer-events: none;
   animation: labelIn 0.3s;
+}
+.admin-form__label-input::before {
+  content: "Введите ";
 }
 .admin-form__input {
   position: relative;
@@ -107,6 +113,7 @@ body {
   box-sizing: border-box;
   padding: 1.5vh 1vw;
   animation: labelOut 0.3s;
+  resize: vertical;
 }
 .admin-form__input:focus ~ label, .admin-form__input:valid ~ label {
   animation: labelOut 0.3s;
@@ -226,19 +233,24 @@ body {
   height: 100vh;
   overflow: auto;
 }
+.section__with-table {
+  max-height: 90vh;
+}
 .section__heading {
   text-align: center;
 }
 .section__body {
   display: flex;
   justify-content: space-between;
+  align-items: start;
 }
 .section__form {
   width: 450px;
 }
 .section__list {
-  margin: 0 2vw;
-  flex-grow: 1;
+  padding: 0 2vw;
+  width: calc(100% - 450px);
+  box-sizing: border-box;
 }
 
 .bg {
@@ -252,5 +264,26 @@ body {
   z-index: 15;
 }
 .bg.active {
+  display: block;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table__row:first-child {
+  width: 4ch;
+}
+.table__heading-ceil {
+  font-weight: 700;
+  border: 2px solid #000;
+}
+.table__ceil {
+  border: 1px solid #000;
+}
+.table__ceil img {
+  max-width: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
 }/*# sourceMappingURL=style.css.map */

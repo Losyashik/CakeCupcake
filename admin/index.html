@@ -15,7 +15,6 @@
             <li class="leftbar__li"><a href="#category" class="leftbar__link">Категории</a></li>
             <li class="leftbar__li"><a href="#products" class="leftbar__link">Товары</a></li>
             <li class="leftbar__li"><a href="#fillings" class="leftbar__link">Начинки</a></li>
-            <li class="leftbar__li"><a href="#gallery" class="leftbar__link">Галерея</a></li>
         </ul>
     </nav>
     <main class="main">
@@ -27,19 +26,17 @@
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
                         <input type="text" name="name" id="category_name" class="admin-form__input" required>
-                        <label for="category_name" class="admin-form__label-input">Введите название категории</label>
+                        <label for="category_name" class="admin-form__label-input">название категории</label>
                     </div>
                     <button class="admin-form__button-submit" type="submit" name="category"
                         value="add">Добавить</button>
                 </form>
-                <article class="section__list">
+                <article class="section__list section__with-table">
                     <table class="section__table table">
                         <tr class="table__row">
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
+                            <th class="table__heading-ceil">id</th>
+                            <th class="table__heading-ceil">Имя</th>
+                            <th class="table__heading-ceil">Удалить</th>
                         </tr>
                     </table>
                 </article>
@@ -48,36 +45,36 @@
         <section class="section" id="products">
             <h1 class="section__heading">Товары</h1>
             <main class="section__body">
-                <form class="section__form admin-form"
-                    method="post">
+                <form class="section__form admin-form" method="post">
                     <h2 class="admin-form__heading">Добавить</h2>
                     <input type="hidden" name="_method" value="PUT">
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
                         <input type="text" name="name" id="product_name" class="admin-form__input" required>
-                        <label for="product_name" class="admin-form__label-input">Введите название товара</label>
+                        <label for="product_name" class="admin-form__label-input">название товара</label>
                     </div>
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
                         <input type="number" name="price" id="producrt_price" class="admin-form__input" min="1"
                             required>
-                        <label for="producrt_price" class="admin-form__label-input">Введите цену</label>
+                        <label for="producrt_price" class="admin-form__label-input">цену</label>
                     </div>
-                    <label for="image" class="admin-form__label-file">
+                    <label for="product_image" class="admin-form__label-file">
                         <div class="admin-form__label-content"></div>
-                        <input class="admin-form__input-file" type="file" name="image" id="image" accept="image/*">
+                        <input class="admin-form__input-file" type="file" name="image" id="product_image"
+                            accept="image/*">
                     </label>
                     <button class="admin-form__button-submit" type="submit" name="products"
                         value="add">Добавить</button>
                 </form>
-                <article class="section__list">
+                <article class="section__list section__with-table">
                     <table class="section__table table">
                         <tr class="table__row">
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
+                            <th class="table__heading-ceil">id</th>
+                            <th class="table__heading-ceil">Изображение</th>
+                            <th class="table__heading-ceil">Название</th>
+                            <th class="table__heading-ceil">Цена</th>
+                            <th class="table__heading-ceil">Удалить</th>
                         </tr>
                     </table>
                 </article>
@@ -91,55 +88,24 @@
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
                         <input type="text" name="name" id="fillings_name" class="admin-form__input" required>
-                        <label for="fillings_name" class="admin-form__label-input">Введите название начинки</label>
+                        <label for="fillings_name" class="admin-form__label-input">название начинки</label>
                     </div>
-                    <label for="image" class="admin-form__label-file">
-                        <div class="admin-form__label-content"></div>
-                        <input class="admin-form__input-file" type="file" name="image" id="image" accept="image/*">
-                    </label>
-                    <button class="admin-form__button-submit" type="submit" name="fillings"
-                        value="add">Добавить</button>
-                </form>
-                <article class="section__list">
-                    <table class="section__table table">
-                        <tr class="table__row">
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                        </tr>
-                    </table>
-                </article>
-            </main>
-        </section>
-        <section class="section" id="gallery">
-            <h1 class="section__heading">Галерея</h1>
-            <main class="section__body">
-                <form method="post" class="section__form admin-form" enctype="multipart/form-data">
-                    <h2 class="admin-form__heading">Добавить</h2>
                     <div class="admin-form__block-input">
                         <div class="admin-form__border-block"></div>
-                        <input type="number" name="price" id="gallery_price" class="admin-form__input" min="1" required>
-                        <label for="gallery_price" class="admin-form__label-input">Введите цену</label>
+                        <textarea type="text" name="description" id="fillings_description" class="admin-form__input"
+                            required></textarea>
+                        <label for="fillings_description" class="admin-form__label-input">описание начинки</label>
                     </div>
-                    <label for="images" class="admin-form__label-file">
-                        <div class="admin-form__label-content"></div>
-                        <input class="admin-form__input-file" type="file" name="images" id="images" accept="image/*"
-                            multiple>
-                    </label>
 
-                    <button class="admin-form__button-submit" type="submit" name="gallery" value="add">Добавить</button>
+                    <label for="filling_image" class="admin-form__label-file">
+                        <div class="admin-form__label-content"></div>
+                        <input class="admin-form__input-file" type="file" name="image" id="filling_image"
+                            accept="image/*">
+                    </label>
+                    <button class="admin-form__button-submit" type="submit" name="filling" value="add">Добавить</button>
                 </form>
-                <article class="section__list">
-                    <table class="section__table table">
-                        <tr class="table__row">
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                            <td class="table__ceil"></td>
-                        </tr>
+                <article class="section__list section__with-table">
+                    <table class="section__table table" id="fillings-table">
                     </table>
                 </article>
             </main>
