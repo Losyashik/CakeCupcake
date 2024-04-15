@@ -1,36 +1,37 @@
 <?php
 require_once("./components/connect.php");
-class fillingController extends connectDB
+class userController extends connectDB
 {
-    public function userController(array $post)
+    public function signUp(array $post)
     {
         $name = $post['name'];
-        $description = $post['description'];
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $path = "./assets/images/fillings/" . convertRUcharacters($name) . ".$ext";
-        try {
-            if (move_uploaded_file($file['tmp_name'], "./." . $path)) {
-                $this->RequestProcessing("INSERT INTO `fillings`(`id`, `name`, `image`, `description`) VALUES (NULL,'$name','$path','$description')");
-                return json_encode($this->getData("SELECT `id`, `name`, `image`, `description` FROM `fillings`"));
-            } else {
-                throw new Exception("Файл не загружен");
-            }
-        } catch (Exception $e) {
-            echo "Ошибка загрузки файла: " . $e->getMessage() . "\n";
+        $number = $post['number'];
+        $password = $post['password'];
+        $res = $this->RequestProcessing("SELECT `id`, `name` FROM `user` WHERE `number` = '$number'");
+        if ($res->num_rows != 0) {
+            return json_encode(['error' => TRUE, 'message' => "Такой пользватель существует"]);
+        } else {
+            $hash = password_hash($password, 0);
+            $this->RequestProcessing("INSERT INTO `user`(`id`, `name`, `number`, `password_hash`, `password_text`) VALUES (NULL,'$name','$number','$hash','$password')");
+            $id = $this->getData("SELECT `id` FROM `user` WHERE `number` = '$number'")[0]['id'];
+            return $this->getDataUser($id);
         }
     }
-    public function getFillings()
+    public function signIn(array $post)
     {
-        return json_encode($this->getData("SELECT `id`, `name`, `image`, `description` FROM `fillings`"));
+        $number = $post['number'];
+        $password = $post['password'];
+        $user = $this->getData("SELECT `id`, `password_hash` FROM `user` WHERE number = '$number'")[0];
+        if (password_verify($password, $user['password_hash'])) {
+            return $this->getDataUser($user['id']);
+        } else {
+            return json_encode(['error' => TRUE, 'message' => "Не верный логин или пароль"]);
+        }
     }
-    public function fillingDelete(array $post)
+    private function getDataUser($id)
     {
-        $id = $post['id'];
-        $this->RequestProcessing("DELETE FROM `fillings` WHERE `id` =  '$id'");
-
-        return json_encode($this->getData("SELECT `id`, `name`, `image`, `description` FROM `fillings`"));
-    }
-    public function fillingUpdate(array $post)
-    {
+        $user = $this->getData("SELECT `id`, `name`, `number`, `admin` FROM `user` WHERE `id` = $id")[0];
+        $user['error'] = FALSE;
+        return json_encode($user);
     }
 }

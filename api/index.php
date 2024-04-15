@@ -2,6 +2,7 @@
 require_once("./controllers/fillingController.php");
 require_once("./controllers/categoryController.php");
 require_once("./controllers/productController.php");
+require_once("./controllers/userController.php");
 
 if (isset($_POST['category'])) {
     $obj = new categoryController();
@@ -54,6 +55,19 @@ if (isset($_POST['product'])) {
             }
         case "delete": {
                 echo ($obj->productDelete($_POST));
+                break;
+            }
+    }
+}
+if (isset($_POST['user'])) {
+    $obj = new userController();
+    switch ($_POST['user']) {
+        case "singup": {
+                echo ($obj->signUp($_POST));
+                break;
+            }
+        case "singin": {
+                echo ($obj->signIn($_POST));
                 break;
             }
     }

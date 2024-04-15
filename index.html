@@ -311,14 +311,14 @@
             <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
             <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
             <h3 class="modal_window__form__heading">Вход в личный кабинет</h3>
-            <input type="text" placeholder="Логин" class="modal_window__form__input">
-            <input type="password" placeholder="Пароль" class="modal_window__form__input">
+            <input type="text" placeholder="Номер телефона" class="modal_window__form__input" name="number" required>
+            <input type="password" placeholder="Пароль" class="modal_window__form__input" name="password" required>
             <div class="modal_window__form__link_block">
                 Нет аккаунта?
                 <a href="" class="modal_window__form__link_block__link" data-form="reg">Зарегестрируйтесь</a>
             </div>
             <div class="modal_window__form__error"></div>
-            <button class="modal_window__form__submit">ВОЙТИ</button>
+            <button class="modal_window__form__submit" name="user" value="singin">ВОЙТИ</button>
         </form>
     </main>
     <main class="modal_window" id="logup">
@@ -326,16 +326,16 @@
             <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
             <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
             <h3 class="modal_window__form__heading">Регистрация</h3>
-            <input type="text" placeholder="Введите имя" class="modal_window__form__input">
-            <input type="tel" placeholder="Введите номер телефона" class="modal_window__form__input">
-            <input type="password" placeholder="Введите пароль" class="modal_window__form__input">
-            <input type="password" placeholder="Введите повторно пароль" class="modal_window__form__input">
+            <input type="text" placeholder="Введите имя" class="modal_window__form__input" name="name" required>
+            <input type="tel" placeholder="Введите номер телефона" class="modal_window__form__input" name="number" required>
+            <input type="password" placeholder="Введите пароль" class="modal_window__form__input" name="password" required>
+            <input type="password" placeholder="Введите повторно пароль" class="modal_window__form__input" name="password_dbl" required>
             <div class="modal_window__form__link_block">
                 Есть аккаунт?
                 <a href="" class="modal_window__form__link_block__link" data-form="login">Войдите</a>
             </div>
             <div class="modal_window__form__error"></div>
-            <button class="modal_window__form__submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+            <button class="modal_window__form__submit" name="user" value="singup">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         </form>
     </main>
     <script src="./assets/scripts/main.js"></script>
