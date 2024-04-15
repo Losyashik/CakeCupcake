@@ -1,19 +1,94 @@
+window.onload = () => {
+  getRequest('category')
+  getRequest('product', 'start')
+  getRequest('filling')
+}
 $(".photo_gallery__body").slick();
 $(".reviews__body").slick();
+function render(type, data) {
+  switch (type) {
+    case "product": {
+      let block = document.querySelector(".catalog__list")
+      block.innerHTML = "";
+      data.forEach(item => {
+        block.insertAdjacentHTML("beforeEnd", `
+        <article class="catalog__list__card">
+            <img src="${item.image}" alt="" class="catalog__list__card__image">
+            <h4 class="catalog__list__card__heading">${item.name}</h4>
+            <div class="catalog__list__card__price">${item.price}₽</div>
+            <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+        </article>
+        `);
+      })
+      break;
+    }
+    case "filling": {
+      let block = document.querySelector(".fillings__body");
+      block.innerHTML = ``;
+      data.forEach(item => {
+        block.insertAdjacentHTML("beforeEnd", `
+                  <article class="fillings__body__item">
+                    <img src="${item.image}" alt="" class="fillings__body__item__image">
+                    <div class="fillings__body__item__description">
+                        <h4 class="fillings__body__item__description__heading">${item.name}</h4>
+                        <p class="fillings__body__item__description__text">${item.description}</p>
+                    </div>
+                  </article>
+                  `);
+      })
+      break;
+    }
+    case "category": {
+      let block = document.querySelector(".catalog__nav__ul");
+      block.innerHTML = `<li class="catalog__nav__li catalog__nav__li_heading">
+                          <h3>Каталог товаров</h3>
+                        </li>`;
+      data.forEach(item => {
+        block.insertAdjacentHTML("beforeEnd", `
+        <li class="catalog__nav__li">
+          <button 
+            type="button" 
+            class="catalog__nav__li__button" 
+            value = "${item.id}">
+            ${item.name}
+          </button>
+        </li>
+        `);
+      })
+      document.querySelectorAll(".catalog__nav__li__button").forEach((elem) => {
+        elem.addEventListener("click", () => {
+          getRequest('product', elem.value)
+          document
+            .querySelector(".catalog__nav__li__button--active")
+            .classList.remove("catalog__nav__li__button--active");
+          elem.classList.add("catalog__nav__li__button--active");
+        });
+      });
+      document
+        .querySelector(".catalog__nav__li__button:first-child")
+        .classList.add("catalog__nav__li__button--active");
+      break;
 
-function getFetch(url, data) {
-  return fetch(url, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error_code) {
-        alert(data.error);
-      } else {
-        return data.list;
-      }
-    });
+    }
+  }
 }
+async function getRequest(type, id = 0) {
+  let body = new FormData();
+
+  if (id) {
+    body.append(type, "selective-get");
+    body.append("id", id);
+  }
+  else {
+    body.append(type, "get");
+  }
+  data = await fetch('./api/index.php', {
+    method: 'post',
+    body
+  }).then(text => text.json()).then(json => { return json });
+  render(type, data);
+}
+
 function openLogin() {
   document.querySelector("body").style = "overflow: hidden;";
   login.style = "top:0";
@@ -28,27 +103,6 @@ function openBasket() {
   } else {
     openLogin();
   }
-}
-async function createCatalog(category) {
-  await getFetch(
-    `./backend/productControler/?category=${category}`
-  ).then((items) => {
-    document.querySelector(".catalog__list").innerHTML = "";
-    items.forEach((item) => {
-      document.querySelector(".catalog__list").insertAdjacentHTML(
-        "afterbegin",
-        `
-          <article class="catalog__list__card">
-            <img src="${item.image}" alt="" class="catalog__list__card__image">
-            <h4 class="catalog__list__card__heading">${item.name}</h4>
-            <div class="catalog__list__card__price">${item.price}₽</div>
-            <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
-          </article>
-          `
-      );
-    });
-    updateEvens();
-  });
 }
 function updateEvens() {
   document.querySelectorAll(".catalog__list__card__button").forEach((item) => {
@@ -80,37 +134,8 @@ document
     });
   });
 
-async function createCatalogNav() {
-  await getFetch("./backend/CategoriesControler/").then((items) => {
-    items.forEach((item) => {
-      document.querySelector(".catalog__nav__ul").insertAdjacentHTML(
-        "beforeend",
-        `
-        <li class="catalog__nav__li">
-            <button 
-              type="button" 
-              class="catalog__nav__li__button" 
-              data-category="${item.id}">
-              ${item.name}
-            </button>
-        </li>
-      `
-      );
-    });
+function createCatalogNav() {
 
-    createCatalog(items[0].id);
-  });
-  document
-    .querySelector(".catalog__nav__li__button:first-child")
-    .classList.add("catalog__nav__li__button--active");
-  document.querySelectorAll(".catalog__nav__li__button").forEach((item) => {
-    item.addEventListener("click", () => {
-      createCatalog(item.dataset.category);
-      document
-        .querySelector(".catalog__nav__li__button--active")
-        .classList.remove("catalog__nav__li__button--active");
-      item.classList.add("catalog__nav__li__button--active");
-    });
-  });
+
 }
 createCatalogNav();

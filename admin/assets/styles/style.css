@@ -98,9 +98,6 @@ body {
   pointer-events: none;
   animation: labelIn 0.3s;
 }
-.admin-form__label-input::before {
-  content: "Введите ";
-}
 .admin-form__input {
   position: relative;
   z-index: 2;

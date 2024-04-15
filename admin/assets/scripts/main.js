@@ -7,38 +7,126 @@ window.onload = () => {
       item.classList.add("active");
     }
   });
-  getfillings();
+  getRequest("filling");
+  getRequest("product");
+  getRequest("category");
 };
 
-async function getfillings() {
+function render(type, data) {
+  switch (type) {
+    case "filling": {
+      let table = document.querySelector("#fillings-table");
+      table.innerHTML = `<tr class="table__row">
+                              <th class="table__heading-ceil" > id</th >
+                              <th class="table__heading-ceil">Изображение</th>
+                              <th class="table__heading-ceil">Название</th>
+                              <th class="table__heading-ceil">Описание</th>
+                              <th class="table__heading-ceil">Удалить</th>
+                          </tr > `;
+      data.forEach((item) => {
+
+        table.insertAdjacentHTML("beforeEnd",
+          `
+            <tr class="table__row">
+              <td class="table__ceil">${item.id}</td>
+              <td class="table__ceil"><img src="./../${item.image}"/></td>
+              <td class="table__ceil">${item.name}</td>
+              <td class="table__ceil">${item.description}</td>
+              <td class="table__ceil">
+                <form class="table__delete-form" method="POST">
+                  <input value = "${item.id}" name="id" type="hidden"/>
+                  <button type="submit" name="filling" value="delete">Удалить</button>
+                </form>
+              </td>
+            </tr>
+          `
+        )
+      })
+      break;
+    }
+    case "product": {
+      let table = document.querySelector("#product-table");
+      table.innerHTML = `<tr class="table__row">
+                              <th class="table__heading-ceil">id</th>
+                              <th class="table__heading-ceil">Изображение</th>
+                              <th class="table__heading-ceil">Название</th>
+                              <th class="table__heading-ceil">Цена</th>
+                              <th class="table__heading-ceil">Категория</th>
+                              <th class="table__heading-ceil">Удалить</th>
+                          </tr>`;
+      data.forEach((item) => {
+
+        table.insertAdjacentHTML("beforeEnd",
+          `
+            <tr class="table__row">
+              <td class="table__ceil">${item.id}</td>
+              <td class="table__ceil"><img src="./../${item.image}"/></td>
+              <td class="table__ceil">${item.name}</td>
+              <td class="table__ceil">${item.price}</td>
+              <td class="table__ceil">${item.category}</td>
+              <td class="table__ceil">
+                <form class="table__delete-form" method="POST">
+                  <input value = "${item.id}" name="id" type="hidden"/>
+                  <button type="submit" name="product" value="delete">Удалить</button>
+                </form>
+              </td>
+            </tr>
+          `
+        )
+      })
+      break;
+    }
+    case "category": {
+      let table = document.querySelector("#category-table");
+      let select = document.querySelector("#product_category");
+      table.innerHTML = `<tr class="table__row">
+                              <th class="table__heading-ceil">id</th>
+                              <th class="table__heading-ceil">Имя</th>
+                              <th class="table__heading-ceil">Удалить</th>
+                          </tr>`;
+      select.innerHTML = "<option value='' selected></option>";
+      data.forEach((item) => {
+        select.insertAdjacentHTML("beforeEnd", `<option value='${item.id}'>${item.name}</option>`)
+        table.insertAdjacentHTML("beforeEnd",
+          `
+            <tr class="table__row">
+              <td class="table__ceil">${item.id}</td>              
+              <td class="table__ceil">${item.name}</td>
+              <td class="table__ceil">
+                <form class="table__delete-form" method="POST">
+                  <input value = "${item.id}" name="id" type="hidden"/>
+                  <button type="submit" name="category" value="delete">Удалить</button>
+                </form>
+              </td>
+            </tr>
+          `
+        )
+      })
+      break;
+    }
+  }
+  document.querySelectorAll(".table__delete-form").forEach(item => {
+    item.addEventListener('submit', async e => {
+      e.preventDefault();
+      let but = item.lastElementChild;
+      let body = new FormData(item);
+      body.append(but.name, but.value)
+      data = await fetch('./../api/index.php', {
+        method: 'post',
+        body
+      }).then(text => text.json()).then(json => { return json })
+      render(but.name, data);
+    })
+  })
+}
+async function getRequest(type) {
   let body = new FormData();
-  body.append("filling", "get");
-  data = await fetch('./assets/api/index.php', {
+  body.append(type, "get");
+  data = await fetch('./../api/index.php', {
     method: 'post',
     body
   }).then(text => text.json()).then(json => { return json });
-  let table = document.querySelector("#fillings-table");
-  table.innerHTML = `<tr class="table__row">
-                                <th class="table__heading-ceil" > id</th >
-                                <th class="table__heading-ceil">Изображение</th>
-                                <th class="table__heading-ceil">Название</th>
-                                <th class="table__heading-ceil">Описание</th>
-                                <th class="table__heading-ceil">Удалить</th>
-                            </tr > `;
-  data.forEach((item) => {
-
-    table.insertAdjacentHTML("beforeEnd",
-      `
-        <tr class="table__row">
-          <td class="table__ceil">${item.id}</td>
-          <td class="table__ceil"><img src="./.${item.image}"/></td>
-          <td class="table__ceil">${item.name}</td>
-          <td class="table__ceil">${item.description}</td>
-          <td class="table__ceil">${item.id}</td>
-        </tr>
-      `
-    )
-  });
+  render(type, data);
 }
 function addImage(block, input) {
   block.innerHTML = '';
@@ -115,44 +203,12 @@ document.querySelectorAll(".admin-form").forEach(item => {
     let but = item.lastElementChild;
     let body = new FormData(item);
     body.append(but.name, but.value)
-    data = await fetch('./assets/api/index.php', {
+    data = await fetch('./../api/index.php', {
       method: 'post',
       body
     }).then(text => text.json()).then(json => { return json })
-    switch (but.name) {
-      case "filling": {
-        let table = document.querySelector("#fillings-table");
-        table.innerHTML = `<tr class="table__row">
-                                <th class="table__heading-ceil" > id</th >
-                                <th class="table__heading-ceil">Изображение</th>
-                                <th class="table__heading-ceil">Название</th>
-                                <th class="table__heading-ceil">Описание</th>
-                                <th class="table__heading-ceil">Удалить</th>
-                            </tr > `;
-        data.forEach((item) => {
-
-          table.insertAdjacentHTML("beforeEnd",
-            `
-              <tr class="table__row">
-                <td class="table__ceil">${item.id}</td>
-                <td class="table__ceil"><img src="./../${item.image}"/></td>
-                <td class="table__ceil">${item.name}</td>
-                <td class="table__ceil">${item.description}</td>
-                <td class="table__ceil">${item.id}</td>
-              </tr>
-            `
-          )
-        })
-        break;
-      }
-      case "products": {
-        break;
-      }
-      case "category": {
-        break;
-      }
-    }
-    item.querySelector(".admin-form__label-content").innerHTML="";
+    render(but.name, data);
+    item.querySelector(".admin-form__label-content").innerHTML = "";
     item.reset()
   })
 })
