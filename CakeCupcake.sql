@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 08 2024 г., 11:19
+-- Время создания: Апр 17 2024 г., 00:03
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -66,7 +66,7 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (9, 'Бенто-торт в виде сердца'),
 (10, 'Бенто-торт на Новый Год'),
 (11, 'Бенто-торт на 8 марта'),
-(12, 'Бенто-торт на 23 февраля');
+(13, 'Бенто-торт на 23 февраля');
 
 -- --------------------------------------------------------
 
@@ -81,25 +81,25 @@ CREATE TABLE `fillings` (
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Дамп данных таблицы `fillings`
+--
+
+INSERT INTO `fillings` (`id`, `name`, `image`, `description`) VALUES
+(1, 'Шоколадная вишня', './assets/images/fillings/SHokoladnaya_vishnya.png', 'Шоколадный бисквит, крем-чиз с добавлением молочного шоколада и прослой из вишневого конфи'),
+(2, 'Фундучная груша', './assets/images/fillings/Funduchnaya_grusha.png', 'Шифоновые бисквиты с добавлением большого количества дробленного фундука, в сочетании крем-чиза и грушевого мусса'),
+(3, 'Малиновый чизкейк', './assets/images/fillings/Malinovyi_chizkeik.png', 'Ванильные бисквиты пропитанные молочной пропиткой, прослойка из чизкейка с добавлением свежей малины'),
+(4, 'Шоколадно-ванильная клубника', './assets/images/fillings/SHokoladno-vanilnaya_klubnika.png', 'Шоколадные и ванильные бисквиты пропитанные малиновым сиропом, прослойка из шоколадно-сливочного крема и крем-чиза с добавлением клубники'),
+(5, 'Фруктовый микс', './assets/images/fillings/Fruktovyi_miks.png', 'Ванильные бисквиты пропитанные клубничным сиропом, прослойкой из сливочно-бананового крема и прослойкой из клубничного конфи'),
+(7, 'Красный бархат', './assets/images/fillings/Krasnyi_barkhat.png', 'Невероятно влажные бисквиты в сочетании с сырным кремом');
+
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery`
+-- Структура таблицы `products`
 --
 
-CREATE TABLE `gallery` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `image` text NOT NULL,
-  `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `product`
---
-
-CREATE TABLE `product` (
+CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(60) NOT NULL,
   `image` text NOT NULL,
@@ -108,11 +108,12 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Дамп данных таблицы `product`
+-- Дамп данных таблицы `products`
 --
 
-INSERT INTO `product` (`id`, `name`, `image`, `price`, `id_category`) VALUES
-(1, 'Бенто-торт на Новый Год', './assets/images/catalog/2.png', 1300.00, 10);
+INSERT INTO `products` (`id`, `name`, `image`, `price`, `id_category`) VALUES
+(1, 'Бенто-торт на Новый Год', './assets/images/catalog/2.png', 1300.00, 10),
+(2, 'Бенто-торт с приколом', './assets/images/products/Bento-tort_s_prikolom.png', 1500.00, 1);
 
 -- --------------------------------------------------------
 
@@ -153,15 +154,9 @@ ALTER TABLE `fillings`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Индексы таблицы `gallery`
+-- Индексы таблицы `products`
 --
-ALTER TABLE `gallery`
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Индексы таблицы `product`
---
-ALTER TABLE `product`
+ALTER TABLE `products`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `id_category` (`id_category`);
 
@@ -185,25 +180,19 @@ ALTER TABLE `application`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `fillings`
 --
 ALTER TABLE `fillings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT для таблицы `gallery`
+-- AUTO_INCREMENT для таблицы `products`
 --
-ALTER TABLE `gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT для таблицы `product`
---
-ALTER TABLE `product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
@@ -220,13 +209,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `application`
   ADD CONSTRAINT `application_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`);
+  ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
 
 --
--- Ограничения внешнего ключа таблицы `product`
+-- Ограничения внешнего ключа таблицы `products`
 --
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`);
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
