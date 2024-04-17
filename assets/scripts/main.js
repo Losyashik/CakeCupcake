@@ -61,12 +61,13 @@ window.onload = () => {
         });
         data.admin = Number(data.admin);
         localStorage.setItem("user-cake", JSON.stringify(data));
-        checkUser()
+        checkUser();
       }
     });
   });
-  document.querySelector(".header__button").addEventListener('click', openBasket);
-
+  document.querySelector(".header__button").addEventListener("click", (e) => {
+    openBasket();
+  });
 };
 $(".photo_gallery__body").slick();
 $(".reviews__body").slick();
@@ -79,25 +80,24 @@ function checkUser() {
     `;
     butLogin.addEventListener("click", openLogin);
     butLogup.addEventListener("click", opneLogup);
-  }
-  else {
+  } else {
     let user = JSON.parse(localStorage.getItem("user-cake"));
     if (user.admin)
       document.querySelector(".topbar__auth").innerHTML = `
             <button class="topbar__auth__button" onclick = "window.location = 'admin'">Панель администратора</button>
             <span class="topbar__auth__seporator">|</span>
             <button class="topbar__auth__button" id="butLogout">Выйти</button>
-    `
+    `;
     else
       document.querySelector(".topbar__auth").innerHTML = `
             <button class="topbar__auth__button" onclick="openBasket()">Оформить заказ</button>
             <span class="topbar__auth__seporator">|</span>
             <button class="topbar__auth__button" id="butLogout">Выйти</button>
-    `
-    document.querySelector("#butLogout").addEventListener('click', () => {
-      localStorage.removeItem('user-cake');
+    `;
+    document.querySelector("#butLogout").addEventListener("click", () => {
+      localStorage.removeItem("user-cake");
       checkUser();
-    })
+    });
   }
 }
 function render(type, data) {
@@ -118,11 +118,13 @@ function render(type, data) {
         `
         );
       });
-      document.querySelectorAll(".catalog__list__card__button").forEach(item => {
-        item.addEventListener("click", (e) => {
-          openBasket(e.target.value);
-        })
-      })
+      document
+        .querySelectorAll(".catalog__list__card__button")
+        .forEach((item) => {
+          item.addEventListener("click", (e) => {
+            openBasket(e.target.value);
+          });
+        });
       break;
     }
     case "filling": {
@@ -130,9 +132,11 @@ function render(type, data) {
       block.innerHTML = ``;
       data.forEach((item) => {
         document.querySelector("#application-filling").insertAdjacentHTML(
-          "beforeEnd", `
+          "beforeEnd",
+          `
                         <option value="${item.id}">${item.name}</option>
-        `);
+        `
+        );
         block.insertAdjacentHTML(
           "beforeEnd",
           `
@@ -203,7 +207,6 @@ async function getRequest(type, id = 0) {
     });
   render(type, data);
 }
-
 function openLogin() {
   document.querySelector("body").style = "overflow: hidden;";
   login.style = "top:0";
@@ -218,10 +221,16 @@ function openBasket(selected = false) {
     application.style = "top:0";
     document.querySelector(".modal_block").innerHTML = "";
     if (selected) {
-      document.querySelector(".modal_block").insertAdjacentHTML('beforeend', `<input type="hidden" name="product" value="${selected}"/>`);
-    }
-    else {
-      document.querySelector(".modal_block").insertAdjacentHTML('beforeend', `
+      document
+        .querySelector(".modal_block")
+        .insertAdjacentHTML(
+          "beforeend",
+          `<input type="hidden" name="product" value="${selected}"/>`
+        );
+    } else {
+      document.querySelector(".modal_block").insertAdjacentHTML(
+        "beforeend",
+        `
       <div class="form-row">
           <label for="image" class="form-row__label">Прикрепить готовый дизайн</label>
           <input type="file" name="image" class="form-row__input">
@@ -233,9 +242,9 @@ function openBasket(selected = false) {
               рисунок и его цвета.</span>
           <textarea name="description-design" id=""></textarea>
       </div>
-`)
+`
+      );
     }
-
   } else {
     openLogin();
   }
@@ -245,7 +254,6 @@ function updateEvens() {
     item.addEventListener("click", openBasket);
   });
 }
-
 function openError(text, form) {
   let block = document.querySelector(
     `#${form.parentElement.id} .modal_window__form__error`
