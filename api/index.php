@@ -3,6 +3,7 @@ require_once("./controllers/fillingController.php");
 require_once("./controllers/categoryController.php");
 require_once("./controllers/productController.php");
 require_once("./controllers/userController.php");
+require_once("./controllers/applicationController.php");
 
 if (isset($_POST['category'])) {
     $obj = new categoryController();
@@ -68,6 +69,24 @@ if (isset($_POST['user'])) {
             }
         case "singin": {
                 echo ($obj->signIn($_POST));
+                break;
+            }
+    }
+}
+if (isset($_POST['application'])) {
+    $obj = new applicationController();
+    switch ($_POST['application']) {
+        case "add": {
+
+                echo ($obj->applicationAdd($_POST, count($_FILES) ? $_FILES['image'] : FALSE));
+                break;
+            }
+        case "get": {
+                echo ($obj->applicationGet());
+                break;
+            }
+        case "": {
+                echo ($obj->applicationGet());
                 break;
             }
     }

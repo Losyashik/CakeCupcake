@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 17 2024 г., 00:03
+-- Время создания: Апр 18 2024 г., 01:50
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -33,10 +33,13 @@ CREATE TABLE `application` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) UNSIGNED NOT NULL,
   `id_product` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_filling` bigint(20) UNSIGNED NOT NULL,
   `number` varchar(14) NOT NULL,
   `addres` text NOT NULL,
+  `date` date NOT NULL,
   `shipping_method` tinyint(1) NOT NULL,
-  `description_design` text DEFAULT NULL
+  `description_design` text DEFAULT NULL,
+  `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -126,8 +129,17 @@ CREATE TABLE `user` (
   `name` varchar(60) NOT NULL,
   `number` varchar(14) NOT NULL,
   `password_hash` text NOT NULL,
-  `password_text` text NOT NULL
+  `password_text` text NOT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `number`, `password_hash`, `password_text`, `admin`) VALUES
+(1, 'admin', '88008008080', '$2y$10$U3/cCFZPwrsZrPFvelXVtuxSR0BQB8uhTibc6O3qLaNf7C9He8Z4S', 'admin', 1),
+(2, 'Футболки', '88001238008', '$2y$10$uZrNRdsCgUaPLS3piHxRmubK0Na6B8RdKt8o9eOhlwynfsYQX4gQ.', '123123', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -139,7 +151,8 @@ CREATE TABLE `user` (
 ALTER TABLE `application`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_product` (`id_product`);
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_filling` (`id_filling`);
 
 --
 -- Индексы таблицы `category`
@@ -198,7 +211,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -209,7 +222,8 @@ ALTER TABLE `user`
 --
 ALTER TABLE `application`
   ADD CONSTRAINT `application_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+  ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `application_ibfk_3` FOREIGN KEY (`id_filling`) REFERENCES `fillings` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `products`
