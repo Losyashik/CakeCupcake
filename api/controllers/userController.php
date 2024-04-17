@@ -21,12 +21,16 @@ class userController extends connectDB
     {
         $number = $post['number'];
         $password = $post['password'];
-        $user = $this->getData("SELECT `id`, `password_hash` FROM `user` WHERE number = '$number'")[0];
-        if (password_verify($password, $user['password_hash'])) {
-            return $this->getDataUser($user['id']);
-        } else {
-            return json_encode(['error' => TRUE, 'message' => "Не верный логин или пароль"]);
+        $res = $this->RequestProcessing("SELECT `id`, `name` FROM `user` WHERE `number` = '$number'");
+        if ($res->num_rows != 0) {
+            $user = $this->getData("SELECT `id`, `password_hash` FROM `user` WHERE number = '$number'")[0];
+            if (password_verify($password, $user['password_hash'])) {
+                return $this->getDataUser($user['id']);
+            } else {
+                return json_encode(['error' => TRUE, 'message' => "Не верный логин или пароль"]);
+            }
         }
+        else return json_encode(['error' => TRUE, 'message' => "Не верный логин или пароль"]);
     }
     private function getDataUser($id)
     {

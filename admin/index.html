@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <script>
+        if (!localStorage.getItem("user-cake") || !JSON.parse(localStorage.getItem("user-cake")).admin) {
+            window.location = "./../";
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/style.css">
@@ -15,6 +20,8 @@
             <li class="leftbar__li"><a href="#category" class="leftbar__link">Категории</a></li>
             <li class="leftbar__li"><a href="#products" class="leftbar__link">Товары</a></li>
             <li class="leftbar__li"><a href="#fillings" class="leftbar__link">Начинки</a></li>
+            <li class="leftbar__li"><a href="#applications" class="leftbar__link">Заказы</a></li>
+            <li class="leftbar__li"><a href="./../" class="leftbar__link">Назад</a></li>
         </ul>
     </nav>
     <main class="main">
@@ -62,8 +69,7 @@
                         <input class="admin-form__input-file" type="file" name="image" id="product_image"
                             accept="image/*">
                     </label>
-                    <button class="admin-form__button-submit" type="submit" name="product"
-                        value="add">Добавить</button>
+                    <button class="admin-form__button-submit" type="submit" name="product" value="add">Добавить</button>
                 </form>
                 <article class="section__list section__with-table">
                     <table id="product-table" class="section__table table"></table>
@@ -97,6 +103,14 @@
                 <article class="section__list section__with-table">
                     <table class="section__table table" id="fillings-table">
                     </table>
+                </article>
+            </main>
+        </section>
+        <section class="section" id="applications">
+            <h1 class="section__heading">Заказы</h1>
+            <main class="section__body">
+                <article class="section__with-table">
+                    
                 </article>
             </main>
         </section>

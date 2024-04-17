@@ -582,6 +582,63 @@ body {
   border: none;
   color: #fff;
 }
+.modal_window#application .modal_window__form__submit {
+  width: 60%;
+}
+
+.form-row {
+  color: var(--main-color);
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2vh auto;
+}
+.form-row__label {
+  width: 40%;
+}
+.form-row__input {
+  width: 55%;
+  border: 1px solid var(--main-color);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1vh;
+}
+.form-row__input--radio {
+  border: 1px solid var(--main-color);
+  margin: 0 0.2vw 0 0;
+}
+.form-row__radio {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+.form-row__textarea {
+  color: var(--main-color);
+  width: 95%;
+  margin: 0 auto;
+}
+.form-row__textarea label {
+  display: block;
+}
+.form-row__textarea span {
+  font-size: 0.7em;
+}
+.form-row__textarea span::before {
+  content: "* ";
+  color: red;
+}
+.form-row__textarea textarea {
+  margin-top: 0.3vh;
+  display: block;
+  width: 100%;
+  height: 10vh;
+  padding: 1vh;
+  box-sizing: border-box;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  resize: none;
+}
 
 .photo_gallery .slick-slider {
   width: 85vw;

@@ -1,4 +1,5 @@
 window.onload = () => {
+  checkUser();
   getRequest("category");
   getRequest("product", "start");
   getRequest("filling");
@@ -54,15 +55,51 @@ window.onload = () => {
       if (data.error) {
         openError(data.message, item);
       } else {
+        document.querySelector("body").style = "";
+        document.querySelectorAll(".modal_window").forEach((block) => {
+          block.style = "";
+        });
+        data.admin = Number(data.admin);
         localStorage.setItem("user-cake", JSON.stringify(data));
+        checkUser()
       }
     });
   });
-  butLogin.addEventListener("click", openLogin);
-  butLogup.addEventListener("click", opneLogup);
+  document.querySelector(".header__button").addEventListener('click', openBasket);
+
 };
 $(".photo_gallery__body").slick();
 $(".reviews__body").slick();
+function checkUser() {
+  if (!localStorage.getItem("user-cake")) {
+    document.querySelector(".topbar__auth").innerHTML = `
+            <button class="topbar__auth__button" id="butLogin">Войти</button>
+            <span class="topbar__auth__seporator">|</span>
+            <button class="topbar__auth__button" id="butLogup">Регистрация</button>
+    `;
+    butLogin.addEventListener("click", openLogin);
+    butLogup.addEventListener("click", opneLogup);
+  }
+  else {
+    let user = JSON.parse(localStorage.getItem("user-cake"));
+    if (user.admin)
+      document.querySelector(".topbar__auth").innerHTML = `
+            <button class="topbar__auth__button" onclick = "window.location = 'admin'">Панель администратора</button>
+            <span class="topbar__auth__seporator">|</span>
+            <button class="topbar__auth__button" id="butLogout">Выйти</button>
+    `
+    else
+      document.querySelector(".topbar__auth").innerHTML = `
+            <button class="topbar__auth__button" onclick="openBasket()">Оформить заказ</button>
+            <span class="topbar__auth__seporator">|</span>
+            <button class="topbar__auth__button" id="butLogout">Выйти</button>
+    `
+    document.querySelector("#butLogout").addEventListener('click', () => {
+      localStorage.removeItem('user-cake');
+      checkUser();
+    })
+  }
+}
 function render(type, data) {
   switch (type) {
     case "product": {
@@ -76,17 +113,26 @@ function render(type, data) {
             <img src="${item.image}" alt="" class="catalog__list__card__image">
             <h4 class="catalog__list__card__heading">${item.name}</h4>
             <div class="catalog__list__card__price">${item.price}₽</div>
-            <button class="catalog__list__card__button">ЗАКАЗАТЬ</button>
+            <button class="catalog__list__card__button" value="${item.id}">ЗАКАЗАТЬ</button>
         </article>
         `
         );
       });
+      document.querySelectorAll(".catalog__list__card__button").forEach(item => {
+        item.addEventListener("click", (e) => {
+          openBasket(e.target.value);
+        })
+      })
       break;
     }
     case "filling": {
       let block = document.querySelector(".fillings__body");
       block.innerHTML = ``;
       data.forEach((item) => {
+        document.querySelector("#application-filling").insertAdjacentHTML(
+          "beforeEnd", `
+                        <option value="${item.id}">${item.name}</option>
+        `);
         block.insertAdjacentHTML(
           "beforeEnd",
           `
@@ -166,9 +212,30 @@ function opneLogup() {
   document.querySelector("body").style = "overflow: hidden;";
   logup.style = "top:0";
 }
-function openBasket() {
+function openBasket(selected = false) {
   if (localStorage.getItem("user-cake")) {
-    alert("Открытие корзины");
+    document.querySelector("body").style = "overflow: hidden;";
+    application.style = "top:0";
+    document.querySelector(".modal_block").innerHTML = "";
+    if (selected) {
+      document.querySelector(".modal_block").insertAdjacentHTML('beforeend', `<input type="hidden" name="product" value="${selected}"/>`);
+    }
+    else {
+      document.querySelector(".modal_block").insertAdjacentHTML('beforeend', `
+      <div class="form-row">
+          <label for="image" class="form-row__label">Прикрепить готовый дизайн</label>
+          <input type="file" name="image" class="form-row__input">
+      </div>
+      <div class="form-row__textarea">
+          <label for="">Деталти дизайна</label>
+          <span>Укажите: цвет покрытия,
+              надпись и ее цвет,
+              рисунок и его цвета.</span>
+          <textarea name="description-design" id=""></textarea>
+      </div>
+`)
+    }
+
   } else {
     openLogin();
   }
