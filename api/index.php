@@ -85,8 +85,8 @@ if (isset($_POST['application'])) {
                 echo ($obj->applicationGet());
                 break;
             }
-        case "": {
-                echo ($obj->applicationGet());
+        case "compleat": {
+                echo ($obj->applicationCompleat($_POST));
                 break;
             }
     }

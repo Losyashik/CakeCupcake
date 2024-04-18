@@ -25,6 +25,10 @@ window.onload = () => {
       });
     });
   });
+
+  document.querySelector(".header__button").addEventListener("click", (e) => {
+    openBasket();
+  });
   document.querySelectorAll(".modal_window__form").forEach((item) => {
     item.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -38,6 +42,9 @@ window.onload = () => {
       );
       let body = new FormData(item);
       body.append(but.name, but.value);
+      if (but.name == "application") {
+        body.append('user', JSON.parse(localStorage.getItem("user-cake")).id)
+      }
       if (but.value == "singup") {
         if (body.get("password") != body.get("password_dbl")) {
           openError("Пароли не совпадают", item);
@@ -54,7 +61,7 @@ window.onload = () => {
         });
       if (data.error) {
         openError(data.message, item);
-      } else {
+      } else if (but.name == "user") {
         document.querySelector("body").style = "";
         document.querySelectorAll(".modal_window").forEach((block) => {
           block.style = "";
@@ -62,11 +69,16 @@ window.onload = () => {
         data.admin = Number(data.admin);
         localStorage.setItem("user-cake", JSON.stringify(data));
         checkUser();
+      } else if (but.name == "application") {
+        item.reset();
+        document.querySelector("body").style = "";
+        document.querySelectorAll(".modal_window").forEach((block) => {
+          block.style = "";
+        });
+        document.querySelector("body").style = "overflow: hidden;";
+        application_compleat.style = "top:0";
       }
     });
-  });
-  document.querySelector(".header__button").addEventListener("click", (e) => {
-    openBasket();
   });
 };
 $(".photo_gallery__body").slick();
@@ -233,14 +245,14 @@ function openBasket(selected = false) {
         `
       <div class="form-row">
           <label for="image" class="form-row__label">Прикрепить готовый дизайн</label>
-          <input type="file" name="image" class="form-row__input">
+          <input type="file" name="image" class="form-row__input" required>
       </div>
       <div class="form-row__textarea">
           <label for="">Деталти дизайна</label>
           <span>Укажите: цвет покрытия,
               надпись и ее цвет,
               рисунок и его цвета.</span>
-          <textarea name="description-design" id=""></textarea>
+          <textarea name="description_design" id="" required></textarea>
       </div>
 `
       );

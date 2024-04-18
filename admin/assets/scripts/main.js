@@ -10,6 +10,7 @@ window.onload = () => {
   getRequest("filling");
   getRequest("product");
   getRequest("category");
+  getRequest("application");
 };
 
 function render(type, data) {
@@ -96,6 +97,45 @@ function render(type, data) {
                 <form class="table__delete-form" method="POST">
                   <input value = "${item.id}" name="id" type="hidden"/>
                   <button type="submit" name="category" value="delete">Удалить</button>
+                </form>
+              </td>
+            </tr>
+          `
+        )
+      })
+      break;
+    }
+    case "application": {
+      let table = document.querySelector("#application-table");
+      table.innerHTML = `<tr class="table__row">
+                              <th class="table__heading-ceil">id</th>
+                              <th class="table__heading-ceil">Имя заказчика</th>
+                              <th class="table__heading-ceil">Название торта</th>
+                              <th class="table__heading-ceil">Начинка</th>
+                              <th class="table__heading-ceil">Номер телефона</th>
+                              <th class="table__heading-ceil">Адрес</th>
+                              <th class="table__heading-ceil">Выбраная дата</th>
+                              <th class="table__heading-ceil">Изображение дизайна</th>
+                              <th class="table__heading-ceil">Описание дизайна</th>
+                              <th class="table__heading-ceil">Выполнено</th>
+                          </tr>`;
+      data.forEach((item) => {
+        table.insertAdjacentHTML("beforeEnd",
+          `
+            <tr class="table__row">
+              <td class="table__ceil">${item.id}</td>              
+              <td class="table__ceil">${item.user}</td>
+              <td class="table__ceil">${item.product?item.product:"Не выбрано"}</td>
+              <td class="table__ceil">${item.filling}</td>
+              <td class="table__ceil">${item.number}</td>
+              <td class="table__ceil">${item.addres}</td>
+              <td class="table__ceil">${item.date}</td>
+              <td class="table__ceil">${item.image?`<img src="./../${item.image}"/>`:"Не добавлено"}</td>
+              <td class="table__ceil">${item.description_design?item.description_design:"Нет описания"}</td>
+              <td class="table__ceil">
+                <form class="table__delete-form" method="POST">
+                  <input value = "${item.id}" name="id" type="hidden"/>
+                  <button type="submit" name="application" value="compleat">Выполнено</button>
                 </form>
               </td>
             </tr>

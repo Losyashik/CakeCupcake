@@ -233,6 +233,9 @@ body {
 .section__with-table {
   max-height: 90vh;
 }
+.section__with-table#application {
+  width: 100%;
+}
 .section__heading {
   text-align: center;
 }

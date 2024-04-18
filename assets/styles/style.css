@@ -582,6 +582,11 @@ body {
   border: none;
   color: #fff;
 }
+.modal_window__message_block {
+  padding: 2vh 0;
+  text-align: center;
+  font-size: var(--main-font-size);
+}
 .modal_window#application .modal_window__form__submit {
   width: 60%;
 }

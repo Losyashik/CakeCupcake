@@ -572,6 +572,7 @@ body {
                 height: var(--main-font-size);
             }
         }
+        
         &__submit {
             display: block;
             background: var(--main-color);
@@ -585,6 +586,11 @@ body {
             color: #fff;
         }
     }
+    &__message_block{
+            padding: 2vh 0;
+            text-align: center;
+            font-size: var(--main-font-size);
+        }
     &#application {
         .modal_window__form__submit {
             width: 60%;

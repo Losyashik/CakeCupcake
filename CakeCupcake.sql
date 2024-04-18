@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 18 2024 г., 01:50
+-- Время создания: Апр 19 2024 г., 00:55
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -39,7 +39,8 @@ CREATE TABLE `application` (
   `date` date NOT NULL,
   `shipping_method` tinyint(1) NOT NULL,
   `description_design` text DEFAULT NULL,
-  `image` text DEFAULT NULL
+  `image` text DEFAULT NULL,
+  `compleat` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

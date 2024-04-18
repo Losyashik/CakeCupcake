@@ -339,13 +339,21 @@
             <button class="modal_window__form__submit" name="user" value="singup">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         </form>
     </main>
+    <main class="modal_window" id="application_compleat">
+        <form action="" class="modal_window__form">
+            <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
+            <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
+            <div class="modal_window__message_block">Ваш заказ принят, с вами свяжется менеджер для уточнения деталей
+                заказа</div>
+        </form>
+    </main>
     <main class="modal_window" id="application">
         <form action="" class="modal_window__form">
             <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
             <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
             <div class="form-row">
                 <label for="application-filling" class="form-row__label">Выбрать начинку</label>
-                <select name="filling" class="form-row__input" id="application-filling"></select>
+                <select name="filling" class="form-row__input" id="application-filling" required></select>
             </div>
             <div class="modal_block">
 
@@ -354,25 +362,26 @@
                 <div for="" class="form-row__label">Выбрать способ
                     доставки</div>
                 <div class="form-row__radio">
-                    <label><input type="radio" checked name="shipping_method"
-                            class="form-row__input--radio">Самовывоз</label>
-                    <label><input type="radio" name="shipping_method" class="form-row__input--radio">Доставка</label>
+                    <label><input type="radio" checked value="1" name="shipping_method" class="form-row__input--radio"
+                            required>Самовывоз</label>
+                    <label><input type="radio" vlalue="2" name="shipping_method" class="form-row__input--radio"
+                            required>Доставка</label>
                 </div>
             </div>
             <div class="form-row">
                 <label for="addres" class="form-row__label">Укажите адрес доставки</label>
-                <input type="text" name="addres" class="form-row__input">
+                <input type="text" name="addres" class="form-row__input" required>
             </div>
             <div class="form-row">
                 <label for="" class="form-row__label">Выбрать дату доставки</label>
-                <input type="date" class="form-row__input">
+                <input type="date" name="date" class="form-row__input" required>
             </div>
             <div class="form-row">
                 <label for="number" class="form-row__label">Ваш номер телефона</label>
-                <input type="text" name="number" class="form-row__input">
+                <input type="text" name="number" class="form-row__input" required>
             </div>
             <div class="modal_window__form__error"></div>
-            <button class="modal_window__form__submit" name="user" value="singup">ЗАКАЗАТЬ</button>
+            <button class="modal_window__form__submit" name="application" value="add">ЗАКАЗАТЬ</button>
         </form>
     </main>
     <script src="./assets/scripts/main.js"></script>
