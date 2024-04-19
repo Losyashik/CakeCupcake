@@ -81,12 +81,24 @@ window.onload = () => {
     });
   });
 };
-$(".photo_gallery__body").slick();
-$(".reviews__body").slick();
+$(".photo_gallery__body").slick({
+  responsive: [{
+    breakpoint: 769,
+    settings: { arrows: false }
+  }]
+
+});
+$(".reviews__body").slick({
+  responsive: [{
+    breakpoint: 769,
+    settings: { arrows: false }
+  }]
+
+});
 function checkUser() {
   if (!localStorage.getItem("user-cake")) {
     document.querySelector(".topbar__auth").innerHTML = `
-            <button class="topbar__auth__button" id="butLogin">Войти</button>
+            <button class="topbar__auth__button" id="butLogin">Вход</button>
             <span class="topbar__auth__seporator">|</span>
             <button class="topbar__auth__button" id="butLogup">Регистрация</button>
     `;

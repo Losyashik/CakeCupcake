@@ -18,11 +18,17 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 2.5vh var(--gorizontal-padding) 0;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 
     &__item {
         font-size: var(--main-font-size);
         &.logo {
             width: 14.2%;
+            @media (max-width: 768px) {
+                width: 100%;
+            }
             img {
                 height: 100%;
                 width: 100%;
@@ -46,7 +52,9 @@ body {
     font-size: var(--main-font-size);
     font-weight: 300;
     z-index: 10;
-
+    @media (max-width:768px) {
+    justify-content: center;
+    }
     &__menu {
         align-items: center;
         display: flex;
@@ -61,6 +69,9 @@ body {
             &:hover {
                 font-weight: 600;
             }
+        }
+        @media (max-width: 768px) {
+            display: none;
         }
     }
     &__auth {
@@ -84,7 +95,8 @@ body {
     background: url(./../images/statick_img/header.png), rgba(255, 255, 255, 0.3);
     background-blend-mode: color;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: var(--main-color);
     display: flex;
     justify-content: center;
@@ -106,6 +118,9 @@ body {
 
         &__heading {
             font-size: 3.75rem;
+            @media (max-width: 768px) {
+                font-size: 2em;
+            }
             font-weight: 300;
             margin: 0;
             margin-bottom: 0.3em;
@@ -127,29 +142,61 @@ body {
         color: var(--main-color);
         border: 3px solid;
         border-radius: 15px;
+        @media (max-width: 768px) {
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 1em;
+            bottom: 1vh;
+        }
     }
 }
 .catalog {
     width: 75vw;
     margin: 0 auto;
+    @media (max-width: 1024px) {
+        width: 90%;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
+    }
     &__body {
         align-items: flex-start;
         display: flex;
         justify-content: space-between;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
     &__nav {
         border: 1px solid var(--main-color);
         border-radius: 20px;
         box-sizing: border-box;
         width: 24.2%;
+        @media (max-width: 768px) {
+            width: 100%;
+            margin-bottom: 4vh;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
         &__ul {
             width: 100%;
             list-style-type: none;
             margin: 0;
             padding: 0;
+            @media (max-width: 768px) {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
         &__li {
+            @media (max-width: 768px) {
+                width: auto;
+            }
             &_heading {
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
                 margin-bottom: 5px;
                 h3 {
                     width: 100%;
@@ -166,6 +213,10 @@ body {
 
             &__button {
                 width: 100%;
+                @media (max-width: 768px) {
+                    height: 100%;
+                    text-align: center;
+                }
                 border: none;
                 background: none;
                 font-size: var(--min-font-size);
@@ -182,9 +233,11 @@ body {
                     color: #fff;
                 }
             }
-            &:last-child {
-                .catalog__nav__li__button {
-                    border-radius: 0px 0px 20px 20px;
+            @media (min-width: 769px) {
+                &:last-child {
+                    .catalog__nav__li__button {
+                        border-radius: 0px 0px 20px 20px;
+                    }
                 }
             }
         }
@@ -194,20 +247,24 @@ body {
         justify-content: space-between;
         flex-wrap: wrap;
         width: 72%;
+        @media (max-width: 768px) {
+            width: 100%;
+            justify-content: space-evenly;
+        }
         &__card {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 17vw;
+            width: 300px;
             margin-bottom: 4.5vh;
-            padding: 0.5vw;
+            padding: 10px;
             box-sizing: border-box;
             border: 1px solid var(--main-color);
             border-radius: 20px;
             background: #f9f2ed;
             &__image {
                 width: 100%;
-                height: 17vw;
+                height: 280px;
                 border-radius: 20px;
             }
             &__heading {
@@ -244,7 +301,10 @@ body {
         &__row {
             display: flex;
             justify-content: space-between;
-            margin: -15 -15px;
+            margin: -15px -15px;
+            @media (max-width: 768px) {
+                margin: -5px -5px;
+            }
         }
         &__three_image {
             &__block {
@@ -252,8 +312,14 @@ body {
             }
         }
         &__four_image {
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+            }
             &__block {
                 width: 100%;
+                @media (max-width: 768px) {
+                    width: calc(50% - 10px);
+                }
             }
         }
         &__block {
@@ -283,6 +349,9 @@ body {
                 font-size: var(--heading-font-size);
                 background: rgba(0, 0, 0, 0.4);
                 transition: all 0.8s;
+            }
+            @media (max-width: 768px) {
+                margin: 5px 5px;
             }
             &:hover {
                 .photo_gallery__item__block__description {
@@ -332,6 +401,9 @@ body {
     display: flex;
     justify-content: space-between;
     background: var(--main-color);
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
     &__body {
         width: 30%;
         color: #fff;
@@ -360,6 +432,20 @@ body {
                 width: 100%;
                 height: 100%;
             }
+        }
+    }
+    @media (max-width: 768px) {
+        padding: 2vh;
+        flex-direction: column;
+        h1 {
+            margin: 0;
+        }
+        &__body {
+            width: 100%;
+        }
+        &__map {
+            width: 100%;
+            height: 20vh;
         }
     }
 }
@@ -440,7 +526,14 @@ body {
     font-size: var(--min-font-size);
     font-weight: 300;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
     &__nav {
+        @media (max-width: 768px) {
+            display: none;
+        }
         flex-basis: 20%;
         &__ul {
             margin: 0;
@@ -462,6 +555,9 @@ body {
 
     &__description {
         width: 40%;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
         &__logo {
             text-align: center;
             display: block;
@@ -478,6 +574,10 @@ body {
         }
     }
     &__contacts {
+        @media (max-width: 768px) {
+            width: 100%;
+            text-align: center;
+        }
         flex-basis: 20%;
         color: #fff;
         &__item {
@@ -572,7 +672,7 @@ body {
                 height: var(--main-font-size);
             }
         }
-        
+
         &__submit {
             display: block;
             background: var(--main-color);
@@ -586,11 +686,11 @@ body {
             color: #fff;
         }
     }
-    &__message_block{
-            padding: 2vh 0;
-            text-align: center;
-            font-size: var(--main-font-size);
-        }
+    &__message_block {
+        padding: 2vh 0;
+        text-align: center;
+        font-size: var(--main-font-size);
+    }
     &#application {
         .modal_window__form__submit {
             width: 60%;
@@ -655,9 +755,15 @@ body {
     .slick {
         &-slider {
             width: 85vw;
+            @media (max-width: 768px) {
+                width: 95vw;
+            }
         }
         &-list {
             width: var(--main-width);
+            @media (max-width: 768px) {
+                width: 95vw;
+            }
         }
         &-next {
             right: 0;
