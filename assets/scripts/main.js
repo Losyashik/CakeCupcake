@@ -1,4 +1,5 @@
 window.onload = () => {
+  document.querySelector("input[name='date']").min = new Date().toISOString().split('T')[0];
   checkUser();
   getRequest("category");
   getRequest("product", "start");
