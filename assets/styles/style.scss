@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 2.5vh var(--gorizontal-padding) 0;
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         flex-direction: column;
     }
 
@@ -26,7 +26,7 @@ body {
         font-size: var(--main-font-size);
         &.logo {
             width: 14.2%;
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 width: 100%;
             }
             img {
@@ -52,7 +52,7 @@ body {
     font-size: var(--main-font-size);
     font-weight: 300;
     z-index: 10;
-    @media (max-width:768px) {
+    @media (max-width:1000px) {
     justify-content: center;
     }
     &__menu {
@@ -70,7 +70,7 @@ body {
                 font-weight: 600;
             }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             display: none;
         }
     }
@@ -118,7 +118,7 @@ body {
 
         &__heading {
             font-size: 3.75rem;
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 font-size: 2em;
             }
             font-weight: 300;
@@ -142,7 +142,7 @@ body {
         color: var(--main-color);
         border: 3px solid;
         border-radius: 15px;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             right: 50%;
             transform: translateX(50%);
             font-size: 1em;
@@ -156,14 +156,14 @@ body {
     @media (max-width: 1024px) {
         width: 90%;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         width: 100%;
     }
     &__body {
         align-items: flex-start;
         display: flex;
         justify-content: space-between;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             flex-direction: column;
         }
     }
@@ -172,7 +172,7 @@ body {
         border-radius: 20px;
         box-sizing: border-box;
         width: 24.2%;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             width: 100%;
             margin-bottom: 4vh;
             border-radius: 20px 20px 0 0;
@@ -183,18 +183,18 @@ body {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 display: flex;
                 flex-direction: column;
                 align-items: stretch;
             }
         }
         &__li {
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 width: auto;
             }
             &_heading {
-                @media (max-width: 768px) {
+                @media (max-width: 1000px) {
                     width: 100%;
                 }
                 margin-bottom: 5px;
@@ -213,7 +213,7 @@ body {
 
             &__button {
                 width: 100%;
-                @media (max-width: 768px) {
+                @media (max-width: 1000px) {
                     height: 100%;
                     text-align: center;
                 }
@@ -247,7 +247,7 @@ body {
         justify-content: space-between;
         flex-wrap: wrap;
         width: 72%;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             width: 100%;
             justify-content: space-evenly;
         }
@@ -302,7 +302,7 @@ body {
             display: flex;
             justify-content: space-between;
             margin: -15px -15px;
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 margin: -5px -5px;
             }
         }
@@ -312,12 +312,12 @@ body {
             }
         }
         &__four_image {
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 flex-wrap: wrap;
             }
             &__block {
                 width: 100%;
-                @media (max-width: 768px) {
+                @media (max-width: 1000px) {
                     width: calc(50% - 10px);
                 }
             }
@@ -350,7 +350,7 @@ body {
                 background: rgba(0, 0, 0, 0.4);
                 transition: all 0.8s;
             }
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 margin: 5px 5px;
             }
             &:hover {
@@ -401,7 +401,7 @@ body {
     display: flex;
     justify-content: space-between;
     background: var(--main-color);
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         flex-direction: column;
     }
     &__body {
@@ -434,7 +434,7 @@ body {
             }
         }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         padding: 2vh;
         flex-direction: column;
         h1 {
@@ -526,12 +526,12 @@ body {
     font-size: var(--min-font-size);
     font-weight: 300;
     justify-content: space-between;
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         flex-direction: column;
         align-items: center;
     }
     &__nav {
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             display: none;
         }
         flex-basis: 20%;
@@ -555,7 +555,7 @@ body {
 
     &__description {
         width: 40%;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             width: 100%;
         }
         &__logo {
@@ -574,7 +574,7 @@ body {
         }
     }
     &__contacts {
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             width: 100%;
             text-align: center;
         }
@@ -755,13 +755,13 @@ body {
     .slick {
         &-slider {
             width: 85vw;
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 width: 95vw;
             }
         }
         &-list {
             width: var(--main-width);
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
                 width: 95vw;
             }
         }

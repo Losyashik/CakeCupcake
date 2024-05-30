@@ -19,12 +19,12 @@
 }
 @media screen and (min-width: 1440px) {
     :root {
-        --main-width: 76vw;
+        --main-width: 80vw;
         --subtitle-font-size: 2.5rem;
         --heading-font-size: 3rem;
         --main-font-size: 1.4rem;
         --min-font-size: 1.25rem;
         --big-font-size: 2.25rem;
-        --gorizontal-padding: 12vw;
+        --gorizontal-padding: 10vw;
     }
 }
