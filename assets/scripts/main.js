@@ -1,5 +1,7 @@
 window.onload = () => {
-  document.querySelector("input[name='date']").min = new Date().toISOString().split('T')[0];
+  document.querySelector("input[name='date']").min = new Date()
+    .toISOString()
+    .split("T")[0];
   checkUser();
   getRequest("category");
   getRequest("product", "start");
@@ -44,7 +46,7 @@ window.onload = () => {
       let body = new FormData(item);
       body.append(but.name, but.value);
       if (but.name == "application") {
-        body.append('user', JSON.parse(localStorage.getItem("user-cake")).id)
+        body.append("user", JSON.parse(localStorage.getItem("user-cake")).id);
       }
       if (but.value == "singup") {
         if (body.get("password") != body.get("password_dbl")) {
@@ -81,20 +83,28 @@ window.onload = () => {
       }
     });
   });
+  document.querySelector(".topbar_burger").addEventListener("click", () => {
+    document.querySelector(".topbar").classList.toggle("topbar--active");
+    document
+      .querySelector(".topbar__menu")
+      .classList.toggle("topbar__menu--active");
+  });
 };
 $(".photo_gallery__body").slick({
-  responsive: [{
-    breakpoint: 769,
-    settings: { arrows: false }
-  }]
-
+  responsive: [
+    {
+      breakpoint: 769,
+      settings: { arrows: false },
+    },
+  ],
 });
 $(".reviews__body").slick({
-  responsive: [{
-    breakpoint: 769,
-    settings: { arrows: false }
-  }]
-
+  responsive: [
+    {
+      breakpoint: 769,
+      settings: { arrows: false },
+    },
+  ],
 });
 function checkUser() {
   if (!localStorage.getItem("user-cake")) {

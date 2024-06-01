@@ -2,18 +2,19 @@
     font-family: "Inter";
     src: url("./../fonts/Inter-VariableFont.ttf");
 }
+
 :root {
     --main-color-rgb: 102, 76, 75;
     --main-color: #664c4b;
 }
 @media screen and (min-width: 320px) {
     :root {
-        --main-width: 95%;
+        --main-width: 76%;
         --subtitle-font-size: 1.2em;
         --heading-font-size: 2em;
-        --main-font-size: 1em;
-        --min-font-size: 1.25rem;
-        --big-font-size: .7em;
+        --main-font-size: medium;
+        --min-font-size: large;
+        --big-font-size: x-large;
         --gorizontal-padding: 12vw;
     }
 }

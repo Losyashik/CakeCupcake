@@ -24,6 +24,10 @@ body {
 
     &__item {
         font-size: var(--main-font-size);
+        @media (max-width: 1000px) {
+            margin: 0.5vh 0;
+        }
+
         &.logo {
             width: 14.2%;
             @media (max-width: 1000px) {
@@ -52,10 +56,25 @@ body {
     font-size: var(--main-font-size);
     font-weight: 300;
     z-index: 10;
-    @media (max-width:1000px) {
-    justify-content: center;
+    @media (max-width: 1000px) {
+        padding: 0px 3vw;
+        display: grid;
+        height: auto;
+        grid-template-areas: "burger f auth" "menu menu menu";
+        grid-template-rows: 8.7vh 1fr;
+        grid-template-columns: 7vh 1fr max-content;
+        transition: all 0.3s;
+        box-sizing: border-box;
+        min-height: 8.7vh;
+        &--active {
+            position: fixed;
+            top: 0;
+            min-height: 100vh;
+            width: 100%;
+        }
     }
     &__menu {
+        grid-area: menu;
         align-items: center;
         display: flex;
         justify-content: space-between;
@@ -72,9 +91,23 @@ body {
         }
         @media (max-width: 1000px) {
             display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: xx-large;
+            width: 100%;
+            height: 100%;
+            &__link {
+                display: block;
+                padding: 10px 0;
+            }
+            &--active {
+                display: flex;
+            }
         }
     }
     &__auth {
+        grid-area: auth;
         color: #fff;
         &__button {
             background: none;
@@ -88,6 +121,16 @@ body {
                 font-weight: 600;
             }
         }
+    }
+    &_burger {
+        grid-area: burger;
+        background: url(./../images/statick_img/burger.png);
+        border: none;
+        height: 80%;
+        width: 7vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
 }
 .header {
@@ -243,20 +286,24 @@ body {
         }
     }
     &__list {
-        display: flex;
+        display: grid;
         justify-content: space-between;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
         width: 72%;
         @media (max-width: 1000px) {
             width: 100%;
-            justify-content: space-evenly;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 500px) {
+            width: 100%;
+            grid-template-columns: 1fr;
         }
         &__card {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 300px;
-            margin-bottom: 4.5vh;
+            width: 100%;
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid var(--main-color);
@@ -264,21 +311,31 @@ body {
             background: #f9f2ed;
             &__image {
                 width: 100%;
-                height: 280px;
+                height: 15vw;
                 border-radius: 20px;
+                object-fit: cover;
+                @media (max-width: 1000px) {
+                    height: 25vh;
+                }
+                @media (max-width: 500px) {
+                    height: 50vh;
+                }
             }
             &__heading {
-                font-size: var(--main-font-size);
+                font-size: var(--subtitle-font-size);
                 font-weight: 300;
                 width: 90%;
                 margin: 0 auto;
                 text-align: center;
             }
             &__price {
-                font-size: 2.1875rem;
+                font-size: medium;
                 font-weight: 400;
                 text-align: center;
                 margin: 0.2vh 0;
+                @media (max-width: 500px) {
+                    margin: 2vh 0;
+                }
             }
             &__button {
                 display: block;
@@ -374,11 +431,19 @@ body {
             display: flex;
             margin: 2vh 0;
             width: 100%;
+            @media (max-width: 1000px) {
+                flex-direction: column;
+            }
             &__image {
                 display: block;
                 width: 25%;
                 margin-right: 5%;
                 object-fit: cover;
+                @media (max-width: 1000px) {
+                    width: 100%;
+                    margin-right: 0;
+                    margin-bottom: 5%;
+                }
             }
             &__description {
                 color: var(--main-color);
@@ -386,9 +451,12 @@ body {
                     font-size: var(--subtitle-font-size);
                     font-weight: 400;
                     margin: 0;
+                    @media (max-width: 1000px) {
+                        text-align: center;
+                    }
                 }
                 &__text {
-                    font-size: var(--big-font-size);
+                    font-size: var(--main-font-size);
                     font-weight: 300;
                 }
             }
