@@ -136,6 +136,7 @@ body {
   font-weight: 600;
 }
 .topbar_burger {
+  display: none;
   grid-area: burger;
   background: url(./../images/statick_img/burger.png);
   border: none;
@@ -144,6 +145,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+@media (max-width: 1000px) {
+  .topbar_burger {
+    display: block;
+  }
 }
 
 .header {
