@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 19 2024 г., 00:55
+-- Время создания: Июн 10 2024 г., 19:40
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `application` (
   `shipping_method` tinyint(1) NOT NULL,
   `description_design` text DEFAULT NULL,
   `image` text DEFAULT NULL,
-  `compleat` tinyint(1) NOT NULL DEFAULT 0
+  `id_status` bigint(20) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -122,6 +122,28 @@ INSERT INTO `products` (`id`, `name`, `image`, `price`, `id_category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `status`
+--
+
+CREATE TABLE `status` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Дамп данных таблицы `status`
+--
+
+INSERT INTO `status` (`id`, `name`) VALUES
+(1, 'Новый'),
+(2, 'Принят'),
+(3, 'Готовится'),
+(4, 'Завершен'),
+(5, 'Отказано');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -153,7 +175,8 @@ ALTER TABLE `application`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_product` (`id_product`),
-  ADD KEY `id_filling` (`id_filling`);
+  ADD KEY `id_filling` (`id_filling`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Индексы таблицы `category`
@@ -175,6 +198,12 @@ ALTER TABLE `products`
   ADD KEY `id_category` (`id_category`);
 
 --
+-- Индексы таблицы `status`
+--
+ALTER TABLE `status`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -188,7 +217,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `application`
 --
 ALTER TABLE `application`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `category`
@@ -209,6 +238,12 @@ ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT для таблицы `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
@@ -224,7 +259,8 @@ ALTER TABLE `user`
 ALTER TABLE `application`
   ADD CONSTRAINT `application_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `application_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `application_ibfk_3` FOREIGN KEY (`id_filling`) REFERENCES `fillings` (`id`);
+  ADD CONSTRAINT `application_ibfk_3` FOREIGN KEY (`id_filling`) REFERENCES `fillings` (`id`),
+  ADD CONSTRAINT `application_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `products`

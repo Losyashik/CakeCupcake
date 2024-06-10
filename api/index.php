@@ -4,6 +4,7 @@ require_once("./controllers/categoryController.php");
 require_once("./controllers/productController.php");
 require_once("./controllers/userController.php");
 require_once("./controllers/applicationController.php");
+require_once("./controllers/statusController.php");
 
 if (isset($_POST['category'])) {
     $obj = new categoryController();
@@ -77,7 +78,6 @@ if (isset($_POST['application'])) {
     $obj = new applicationController();
     switch ($_POST['application']) {
         case "add": {
-
                 echo ($obj->applicationAdd($_POST, count($_FILES) ? $_FILES['image'] : FALSE));
                 break;
             }
@@ -85,8 +85,21 @@ if (isset($_POST['application'])) {
                 echo ($obj->applicationGet());
                 break;
             }
-        case "compleat": {
-                echo ($obj->applicationCompleat($_POST));
+        case "selective-get": {
+                echo ($obj->applicationGetUser($_POST));
+                break;
+            }
+        case "edit_status": {
+                echo ($obj->applicationEditStatus($_POST));
+                break;
+            }
+    }
+}
+if (isset($_POST['status'])) {
+    $obj = new statusController();
+    switch ($_POST['status']) {
+        case "get": {
+                echo ($obj->getStatuses());
                 break;
             }
     }

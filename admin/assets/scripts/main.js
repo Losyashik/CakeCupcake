@@ -125,39 +125,51 @@ function render(type, data) {
             <tr class="table__row">
               <td class="table__ceil">${item.id}</td>              
               <td class="table__ceil">${item.user}</td>
-              <td class="table__ceil">${item.product?item.product:"Не выбрано"}</td>
+              <td class="table__ceil">${item.product ? item.product : "Не выбрано"}</td>
               <td class="table__ceil">${item.filling}</td>
               <td class="table__ceil">${item.number}</td>
               <td class="table__ceil">${item.addres}</td>
               <td class="table__ceil">${item.date}</td>
-              <td class="table__ceil">${item.image?`<img src="./../${item.image}"/>`:"Не добавлено"}</td>
-              <td class="table__ceil">${item.description_design?item.description_design:"Нет описания"}</td>
+              <td class="table__ceil">${item.image ? `<img src="./../${item.image}"/>` : "Не добавлено"}</td>
+              <td class="table__ceil">${item.description_design ? item.description_design : "Нет описания"}</td>
               <td class="table__ceil">
                 <form class="table__delete-form" method="POST">
                   <input value = "${item.id}" name="id" type="hidden"/>
-                  <button type="submit" name="application" value="compleat">Выполнено</button>
+                  <input value = "edit_status" name="application" type="hidden"/>
+                  <select name="status" data-selected = '${item.id_status}'>
+
+                  </select>
                 </form>
               </td>
             </tr>
           `
         )
+
       })
+      getRequest("status");
+      break;
+    }
+    case "status": {
+      let sel = document.querySelectorAll("select[name='status']");
+      sel.forEach(select => {
+        id = select.dataset.selected;
+        data.forEach((item) => {
+          select.insertAdjacentHTML("beforeEnd", `<option ${id == item.id ? "selected" : ""} value="${item.id}">${item.name}</option>`);
+        });
+        select.addEventListener('change', async (e) => {
+          let body = new FormData(e.currentTarget.parentNode);
+          await fetch('./../api/index.php', {
+            method: 'post',
+            body
+          }).then(() => {
+            getRequest('application');
+          })
+        })
+      })
+
       break;
     }
   }
-  document.querySelectorAll(".table__delete-form").forEach(item => {
-    item.addEventListener('submit', async e => {
-      e.preventDefault();
-      let but = item.lastElementChild;
-      let body = new FormData(item);
-      body.append(but.name, but.value)
-      data = await fetch('./../api/index.php', {
-        method: 'post',
-        body
-      }).then(text => text.json()).then(json => { return json })
-      render(but.name, data);
-    })
-  })
 }
 async function getRequest(type) {
   let body = new FormData();

@@ -35,7 +35,7 @@ class applicationController extends connectDB
     public function applicationGet()
     {
         $data = [];
-        $res = $this->RequestProcessing("SELECT * FROM `application` where compleat = 0");
+        $res = $this->RequestProcessing("SELECT * FROM `application` where id_status NOT IN (SELECT id FROM status WHERE name IN ('Завершен','Отказано'))");
         while ($row = $res->fetch_assoc()) {
             $row['user'] = $this->getData("SELECT `name` FROM `user` WHERE id = " . $row['id_user'])[0]['name'];
             if ($row['id_product'] != NULL) {
@@ -47,10 +47,27 @@ class applicationController extends connectDB
         }
         return json_encode($data);
     }
-    public function applicationCompleat(array $post)
+    public function applicationEditStatus(array $post)
     {
         $id = $post['id'];
-        $this->RequestProcessing("UPDATE `application` SET `compleat` = '1' WHERE `id` = $id");
+        $status = $post['status'];
+        $this->RequestProcessing("UPDATE `application` SET `id_status` = '$status' WHERE `id` = $id");
         return $this->applicationGet();
+    }
+    public function applicationGetUser(array $post){
+        $data = [];
+        $res = $this->RequestProcessing("SELECT * FROM `application` where id_user='{$post['id']}'");
+        while ($row = $res->fetch_assoc()) {
+            $row['user'] = $this->getData("SELECT `name` FROM `user` WHERE id = " . $row['id_user'])[0]['name'];
+            if ($row['id_product'] != NULL) {
+                $row['product'] = $this->getData("SELECT `name` FROM `products` WHERE id = " . $row['id_product'])[0]['name'];
+                $row['image'] = $this->getData("SELECT `image` FROM `products` WHERE id = " . $row['id_product'])[0]['image'];
+            }
+            $row["filling"] = $this->getData("SELECT `name` FROM `fillings` WHERE id = " . $row['id_filling'])[0]['name'];
+            $row["shipping_method"] = $row["shipping_method"]==1?"Самовывоз":"Доставка";
+            $row['status'] = $this->getData("SELECT `name` FROM `status` WHERE id = " . $row['id_status'])[0]['name'];;
+            $data[] = $row;
+        }
+        return json_encode($data);
     }
 }

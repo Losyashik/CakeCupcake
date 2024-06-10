@@ -30,7 +30,4 @@ class fillingController extends connectDB
 
         return json_encode($this->getData("SELECT `id`, `name`, `image`, `description` FROM `fillings`"));
     }
-    public function fillingUpdate(array $post)
-    {
-    }
 }

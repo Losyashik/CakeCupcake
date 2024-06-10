@@ -20,29 +20,182 @@
         <button type="button" class="topbar_burger"></button>
         <ul class="topbar__menu ">
             <li class="topbar__menu__li">
-                <a href="#" class="topbar__menu__link">Заказать торт</a>
+                <a href="./#" class="topbar__menu__link">Заказать торт</a>
             </li>
             <li class="topbar__menu__li">
-                <a href="#fillings" class="topbar__menu__link">Начинки</a>
+                <a href="./#fillings" class="topbar__menu__link">Начинки</a>
             </li>
             <li class="topbar__menu__li">
-                <a href="#photo_gallery" class="topbar__menu__link">Фотогалерея</a>
+                <a href="./#photo_gallery" class="topbar__menu__link">Фотогалерея</a>
             </li>
             <li class="topbar__menu__li">
-                <a href="#reviews" class="topbar__menu__link">Отзывы</a>
+                <a href="./#reviews" class="topbar__menu__link">Отзывы</a>
             </li>
             <li class="topbar__menu__li">
-                <a href="#delivery" class="topbar__menu__link">Доставка</a>
+                <a href="./#delivery" class="topbar__menu__link">Доставка</a>
             </li>
             <li class="topbar__menu__li">
-                <a href="#contacts" class="topbar__menu__link">Контакты</a>
+                <a href="./#contacts" class="topbar__menu__link">Контакты</a>
             </li>
         </ul>
         <div class="topbar__auth">
 
         </div>
     </nav>
+    <main class="profile">
+        <section class="profile_data">
+            <h3 class="data_heading">Данные пользоавтеля</h3>
+            <div class="data_name">Имя: <span></span></div>
+            <div class="data_number">Номер: <span></span></div>
+        </section>
+        <section class="profile_applications">
+
+        </section>
+    </main>
+    <footer class="footer">
+        <nav class="footer__nav">
+            <ul class="footer__nav__ul">
+
+                <li class="footer__nav__ul__li">
+                    <a href="#catalog" class="footer__nav__ul__li__link">Ассортимент</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#fillings" class="footer__nav__ul__li__link">Начинки</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#photo_gallery" class="footer__nav__ul__li__link">Фотогалерея</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#reviews" class="footer__nav__ul__li__link">Отзывы</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#delivery" class="footer__nav__ul__li__link">Доставка</a>
+                </li>
+                <li class="footer__nav__ul__li">
+                    <a href="#contacts" class="footer__nav__ul__li__link">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="footer__description">
+            <img src="./assets/images/logos/footer_logo.png" alt="" class="footer__description__logo">
+            <p class="footer__description__text">Только натуральные, качественные и свежие ингредиенты, тщательно
+                подобранные вкусовые сочетания,которые никого не оставят равнодушным.</p>
+        </section>
+        <section class="footer__contacts">
+            <article class="footer__contacts__item">
+                <h5 class="footer__contacts__item__heading">WhatsApp, Telegram
+                </h5>
+                <a class="footer__contacts__item__text">+7 (900) 000-00-00</a>
+            </article>
+            <article class="footer__contacts__item">
+                <section class="footer__contacts__item__work_schedule">
+                    <h5 class="footer__contacts__item__heading">График работы:
+                    </h5>
+                    <p class="footer__contacts__item__text">с 8:00 до 21:00</p>
+                </section>
+            </article>
+            <section class="footer__contacts__item__soc">
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/vk.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/instagramm.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+                <a href="" class="footer__contacts__item__soc__link">
+                    <img src="./assets/images/soc/whatsapp.svg" alt="" class="footer__contacts__item__soc__image">
+                </a>
+            </section>
+        </section>
+    </footer>
+    <main class="modal_window" id="application_compleat">
+        <form action="" class="modal_window__form">
+            <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
+            <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
+            <div class="modal_window__message_block">Ваш заказ принят, с вами свяжется менеджер для уточнения деталей
+                заказа</div>
+        </form>
+    </main>
+    <main class="modal_window" id="application">
+        <form action="" class="modal_window__form">
+            <img src="./assets/images/statick_img/close.png" alt="" class="modal_window__form__close">
+            <img src="./assets/images/logos/logo.png" alt="" class="modal_window__form__logo">
+            <div class="form-row">
+                <label for="application-filling" class="form-row__label">Выбрать начинку</label>
+                <select name="filling" class="form-row__input" id="application-filling" required></select>
+            </div>
+            <div class="modal_block">
+
+            </div>
+            <div class="form-row">
+                <div for="" class="form-row__label">Выбрать способ
+                    доставки</div>
+                <div class="form-row__radio">
+                    <label><input type="radio" checked value="1" name="shipping_method" class="form-row__input--radio"
+                            required>Самовывоз</label>
+                    <label><input type="radio" vlalue="2" name="shipping_method" class="form-row__input--radio"
+                            required>Доставка</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="addres" class="form-row__label">Укажите адрес доставки</label>
+                <input type="text" name="addres" class="form-row__input" required>
+            </div>
+            <div class="form-row">
+                <label for="" class="form-row__label">Выбрать дату доставки</label>
+                <input type="date" name="date" class="form-row__input" required>
+            </div>
+            <div class="form-row">
+                <label for="number" class="form-row__label">Ваш номер телефона</label>
+                <input type="text" name="number" class="form-row__input" required>
+            </div>
+            <div class="modal_window__form__error"></div>
+            <button class="modal_window__form__submit" name="application" value="add">ЗАКАЗАТЬ</button>
+        </form>
+    </main>
+
     <script src="./assets/scripts/main.js"></script>
+    <script>
+        if (!localStorage.getItem("user-cake")) {
+            window.location = "./";
+        }
+        else {
+            user = JSON.parse(localStorage.getItem("user-cake"));
+            document.querySelector(".data_name span").innerHTML = user.name;
+            document.querySelector(".data_number span").innerHTML = user.number;
+            let body = new FormData();
+            body.append("application", "selective-get");
+            body.append("id", user.id);
+            async function render() {
+                data = await fetch("./api/index.php", {
+                    method: "post",
+                    body,
+                }).then((text) => text.json()).then((json) => {
+                    return json;
+                });
+                console.log(data);
+                block = document.querySelector(".profile_applications");
+                data.forEach(el => {
+                    block.insertAdjacentHTML("beforeEnd",
+                        `<div class="app">
+                            <div class="app_image">
+                                <img src="${el.image}" alt=""></div>
+                            ${el.product ? '<div class="app_product"><h3 class="app_heading">' + el.product + '</h3></div>' : ""}
+                            <div class="app_filling">
+                                <h3 class="app_heading">Начинка</h3>${el.filling}
+                            </div>
+                            <div class="app_shiping">
+                                <h3 class="app_heading">Способ доставки</h3>${el.shipping_method}
+                            </div>
+                            ${el.description_design ? '<div class="app_description"><h3 class="app_heading">Описание</h3>' + el.description_design + '</div>' : ""}
+                            <div class="app_status">
+                                <h3 class="app_heading">Статус</h3>${el.status}
+                            </div>
+                        </div>`)
+                });
+            }
+            render();
+        }
+    </script>
 </body>
 
 </html>

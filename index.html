@@ -254,6 +254,7 @@
     <footer class="footer">
         <nav class="footer__nav">
             <ul class="footer__nav__ul">
+
                 <li class="footer__nav__ul__li">
                     <a href="#catalog" class="footer__nav__ul__li__link">Ассортимент</a>
                 </li>
@@ -385,7 +386,16 @@
             <button class="modal_window__form__submit" name="application" value="add">ЗАКАЗАТЬ</button>
         </form>
     </main>
+
     <script src="./assets/scripts/main.js"></script>
+    <script>
+        getRequest("category");
+        getRequest("product", "start");
+        getRequest("filling");
+        document.querySelector(".header__button").addEventListener("click", (e) => {
+            openBasket();
+        });
+    </script>
 </body>
 
 </html>

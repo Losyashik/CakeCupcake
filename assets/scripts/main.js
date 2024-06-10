@@ -1,11 +1,6 @@
 window.onload = () => {
-  document.querySelector("input[name='date']").min = new Date()
-    .toISOString()
-    .split("T")[0];
+
   checkUser();
-  getRequest("category");
-  getRequest("product", "start");
-  getRequest("filling");
   document
     .querySelectorAll(".modal_window__form__link_block__link")
     .forEach((elem) => {
@@ -29,9 +24,6 @@ window.onload = () => {
     });
   });
 
-  document.querySelector(".header__button").addEventListener("click", (e) => {
-    openBasket();
-  });
   document.querySelectorAll(".modal_window__form").forEach((item) => {
     item.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -114,12 +106,12 @@ function checkUser() {
             <button class="topbar__auth__button" id="butLogup">Регистрация</button>
     `;
     butLogin.addEventListener("click", openLogin);
-    butLogup.addEventListener("click", opneLogup);
+    butLogup.addEventListener("click", openLogup);
   } else {
     let user = JSON.parse(localStorage.getItem("user-cake"));
     if (user.admin)
       document.querySelector(".topbar__auth").innerHTML = `
-            <button class="topbar__auth__button" onclick = "window.location = 'admin'">Панель администратора</button>
+            <button class="topbar__auth__button" onclick = "window.location = 'admin/'">Панель администратора</button>
             <span class="topbar__auth__seporator">|</span>
             <button class="topbar__auth__button" id="butLogout">Выйти</button>
     `;
@@ -128,9 +120,16 @@ function checkUser() {
             <button class="topbar__auth__button" onclick="openBasket()">Оформить заказ</button>
             <span class="topbar__auth__seporator">|</span>
             <button class="topbar__auth__button" id="butLogout">Выйти</button>
-    `;
+      `
+    document.querySelector(".topbar__menu").insertAdjacentHTML("afterbegin", `
+      <li class="topbar__menu__li">
+          <a href="./profile.html" class="topbar__menu__link">Личный кабинет</a>
+      </li>
+      `)
+      ;
     document.querySelector("#butLogout").addEventListener("click", () => {
       localStorage.removeItem("user-cake");
+      window.location = "./";
       checkUser();
     });
   }
@@ -246,7 +245,7 @@ function openLogin() {
   document.querySelector("body").style = "overflow: hidden;";
   login.style = "top:0";
 }
-function opneLogup() {
+function openLogup() {
   document.querySelector("body").style = "overflow: hidden;";
   logup.style = "top:0";
 }
@@ -296,3 +295,6 @@ function openError(text, form) {
   block.innerHTML = text;
   block.classList.add("modal_window__form__error--active");
 }
+document.querySelector("input[name='date']").min = new Date()
+  .toISOString()
+  .split("T")[0];
