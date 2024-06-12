@@ -370,7 +370,7 @@
                             required>Доставка</label>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row" id="addres" style="display: none;">
                 <label for="addres" class="form-row__label">Укажите адрес доставки</label>
                 <input type="text" name="addres" class="form-row__input" required>
             </div>
@@ -386,7 +386,7 @@
             <button class="modal_window__form__submit" name="application" value="add">ЗАКАЗАТЬ</button>
         </form>
     </main>
-
+    <button class="upp_button" style="display: none;"></button>
     <script src="./assets/scripts/main.js"></script>
     <script>
         getRequest("category");

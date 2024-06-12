@@ -8,7 +8,7 @@ class productController extends connectDB
         $price = $post['price'];
         $category = $post['category'];
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $path = "./assets/images/products/" . convertRUcharacters($name) . ".$ext";
+        $path = "./assets/images/products/" . convertRUcharacters($name) . time() . ".$ext";
         try {
             if (move_uploaded_file($file['tmp_name'], "./." . $path)) {
                 $this->RequestProcessing("INSERT INTO `products`(`id`, `name`, `image`, `price`, `id_category`) VALUES (NULL,'$name','$path','$price','$category')");

@@ -81,6 +81,15 @@ window.onload = () => {
       .querySelector(".topbar__menu")
       .classList.toggle("topbar__menu--active");
   });
+  document.querySelectorAll(".topbar__menu__link").forEach(i => {
+    i.addEventListener('click', () => {
+      document.querySelector(".topbar").classList.toggle("topbar--active");
+
+      document
+        .querySelector(".topbar__menu")
+        .classList.toggle("topbar__menu--active");
+    })
+  })
 };
 $(".photo_gallery__body").slick({
   responsive: [
@@ -298,3 +307,26 @@ function openError(text, form) {
 document.querySelector("input[name='date']").min = new Date()
   .toISOString()
   .split("T")[0];
+
+window.addEventListener('scroll', (e => {
+  if (window.scrollY >= window.innerHeight) {
+    document.querySelector('.upp_button').style = "";
+  }
+  else {
+    document.querySelector('.upp_button').style = "display:none;";
+  }
+}));
+document.querySelector('.upp_button').addEventListener('click',()=>{
+  window.scrollTo(0,0);
+})
+document.querySelectorAll("input[name='shipping_method']").forEach(i => {
+  i.addEventListener('change', () => {
+    if (i.value == 1) {
+      document.querySelector('#addres').style = "display:none;";
+    }
+    else {
+      document.querySelector('#addres').style = "";
+
+    }
+  })
+})
