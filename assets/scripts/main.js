@@ -316,17 +316,19 @@ window.addEventListener('scroll', (e => {
     document.querySelector('.upp_button').style = "display:none;";
   }
 }));
-document.querySelector('.upp_button').addEventListener('click',()=>{
-  window.scrollTo(0,0);
+document.querySelector('.upp_button').addEventListener('click', () => {
+  window.scrollTo(0, 0);
 })
 document.querySelectorAll("input[name='shipping_method']").forEach(i => {
   i.addEventListener('change', () => {
     if (i.value == 1) {
       document.querySelector('#addres').style = "display:none;";
+      document.querySelector('#addres input').removeAttribute('required');
+
     }
     else {
       document.querySelector('#addres').style = "";
-
+      document.querySelector('#addres input').setAttribute('required', 'true');
     }
   })
 })
